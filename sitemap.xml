@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://www.lingual.dev/eleventy-base-blog/blog/i18nCheck/</loc>
+		<loc>https://www.lingual.dev/blog/i18nCheck/</loc>
 		<lastmod>2024-06-12</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://www.lingual.dev/eleventy-base-blog/blog/</loc>
+		<loc>https://www.lingual.dev/blog/</loc>
 		<lastmod>2024-06-13</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://www.lingual.dev/eleventy-base-blog/</loc>
+		<loc>https://www.lingual.dev/</loc>
 		<lastmod>2024-06-13</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://www.lingual.dev/eleventy-base-blog/tags/</loc>
+		<loc>https://www.lingual.dev/tags/</loc>
 		<lastmod>2024-06-13</lastmod>
 	</url>
 </urlset>
