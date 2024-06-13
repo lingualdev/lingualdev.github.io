@@ -1,7 +1,7 @@
 ---
 title: Introducing i18n-check - Improving the i18n developer experience
 description: Introduction to i18n-check
-date: 2024-06-12
+date: 2024-06-13
 tags:
 ---
 
