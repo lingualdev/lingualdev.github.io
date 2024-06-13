@@ -4,7 +4,7 @@
 	<subtitle>I am writing about my experiences as a naval navel-gazer.</subtitle>
 	<link href="https://www.lingual.dev/feed/feed.xml" rel="self"/>
 	<link href="https://www.lingual.dev/"/>
-	<updated>2024-06-12T00:00:00Z</updated>
+	<updated>2024-06-13T00:00:00Z</updated>
 	<id>https://www.lingual.dev/</id>
 	<author>
 		<name>Your Name Here</name>
@@ -14,7 +14,7 @@
 	<entry>
 		<title>Introducing i18n-check - Improving the i18n developer experience</title>
 		<link href="https://www.lingual.dev/blog/i18nCheck/"/>
-		<updated>2024-06-12T00:00:00Z</updated>
+		<updated>2024-06-13T00:00:00Z</updated>
 		<id>https://www.lingual.dev/blog/i18nCheck/</id>
 		<content type="html">&lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;Introduction &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/i18nCheck/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We released &lt;a href=&quot;https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples&quot;&gt;&lt;code&gt;i18n-check&lt;/code&gt;&lt;/a&gt; to help with internalization efforts and support in finding &lt;strong&gt;untranslated&lt;/strong&gt; or &lt;strong&gt;invalid translation messages&lt;/strong&gt;.&lt;/p&gt;
