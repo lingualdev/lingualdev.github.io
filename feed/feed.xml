@@ -55,7 +55,7 @@ This is what &lt;code&gt;i18n-check&lt;/code&gt; should help with, having &lt;st
 &lt;p&gt;You can use the &lt;code&gt;-t&lt;/code&gt; or &lt;code&gt;--target&lt;/code&gt; option to define the directory that contains the target files and with the &lt;code&gt;-s&lt;/code&gt; or &lt;code&gt;--source&lt;/code&gt; option you can specify the base/reference file to compare the target files against.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; i18n:check &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt; locales &lt;span class=&quot;token parameter variable&quot;&gt;-s&lt;/span&gt; locales/en-en.json&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In the above scenario the &lt;code&gt;i18n-check&lt;/code&gt; will compare the &lt;code&gt;fr-fr.json&lt;/code&gt; and &lt;code&gt;it-it.json&lt;/code&gt; file against the &lt;code&gt;en-en.json&lt;/code&gt; file and check for any missing or broken keys. Running the above command might return the following result:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://gist.github.com/assets/718727/fb02c597-fd8b-4f24-bf87-87f28a454c6e&quot; alt=&quot;lingual-i18n-check example 1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/1od_GqfDuY-1224.avif 1224w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/1od_GqfDuY-1224.webp 1224w&quot;&gt;&lt;img alt=&quot;lingual-i18n-check example 1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/1od_GqfDuY-1224.png&quot; width=&quot;1224&quot; height=&quot;591&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;i18n translations checker
 Source file&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: locales/en-en.json
 
@@ -78,7 +78,7 @@ In locales/it-it.json:
 
 Done &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.01s.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can also use the &lt;code&gt;-r&lt;/code&gt; or &lt;code&gt;--reporter&lt;/code&gt; option to see a summary of the check instead of single keys, this is especially useful if you do not want to list all the keys:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://gist.github.com/assets/718727/9ac4d2da-eeb4-4215-898d-2fce08622646&quot; alt=&quot;lingual-i18n-check example 2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/tIHotYuKhg-1222.avif 1222w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/tIHotYuKhg-1222.webp 1222w&quot;&gt;&lt;img alt=&quot;lingual-i18n-check example 2&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/tIHotYuKhg-1222.png&quot; width=&quot;1222&quot; height=&quot;499&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;i18n translations checker
 Source file&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: locales/en-en.json
 

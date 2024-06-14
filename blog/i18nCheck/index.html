@@ -448,6 +448,21 @@ a[href].header-anchor:focus,
 
 h2 + .header-anchor {
 	font-size: 1.5em;
+}
+
+/* https://www.zachleat.com/web/fluid-images/ */
+
+img {
+	max-width: 100%;
+}
+img[width][height] {
+	height: auto; /* Preserve aspect ratio */
+}
+/* Let SVG scale without boundaries */
+img[src$=".svg"] {
+	width: 100%;
+	height: auto;
+	max-width: none;
 }</style>
 	</head>
 	<body>
@@ -511,7 +526,7 @@ This is what <code>i18n-check</code> should help with, having <strong>a tool tha
 <p>You can use the <code>-t</code> or <code>--target</code> option to define the directory that contains the target files and with the <code>-s</code> or <code>--source</code> option you can specify the base/reference file to compare the target files against.</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">yarn</span> i18n:check <span class="token parameter variable">-t</span> locales <span class="token parameter variable">-s</span> locales/en-en.json</code></pre>
 <p>In the above scenario the <code>i18n-check</code> will compare the <code>fr-fr.json</code> and <code>it-it.json</code> file against the <code>en-en.json</code> file and check for any missing or broken keys. Running the above command might return the following result:</p>
-<p><img src="https://gist.github.com/assets/718727/fb02c597-fd8b-4f24-bf87-87f28a454c6e" alt="lingual-i18n-check example 1"></p>
+<p><picture><source type="image/avif" srcset="/img/1od_GqfDuY-1224.avif 1224w"><source type="image/webp" srcset="/img/1od_GqfDuY-1224.webp 1224w"><img alt="lingual-i18n-check example 1" loading="lazy" decoding="async" src="/img/1od_GqfDuY-1224.png" width="1224" height="591"></picture></p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">i18n translations checker
 Source file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>: locales/en-en.json
 
@@ -534,7 +549,7 @@ In locales/it-it.json:
 
 Done <span class="token keyword">in</span> <span class="token number">0</span>.01s.</code></pre>
 <p>You can also use the <code>-r</code> or <code>--reporter</code> option to see a summary of the check instead of single keys, this is especially useful if you do not want to list all the keys:</p>
-<p><img src="https://gist.github.com/assets/718727/9ac4d2da-eeb4-4215-898d-2fce08622646" alt="lingual-i18n-check example 2"></p>
+<p><picture><source type="image/avif" srcset="/img/tIHotYuKhg-1222.avif 1222w"><source type="image/webp" srcset="/img/tIHotYuKhg-1222.webp 1222w"><img alt="lingual-i18n-check example 2" loading="lazy" decoding="async" src="/img/tIHotYuKhg-1222.png" width="1222" height="499"></picture></p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">i18n translations checker
 Source file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>: locales/en-en.json
 
@@ -616,6 +631,6 @@ Done <span class="token keyword">in</span> <span class="token number">0</span>.0
 
 		<footer></footer>
 
-		<!-- This page `/blog/i18nCheck/` was built on 2024-06-13T14:48:03.756Z -->
+		<!-- This page `/blog/i18nCheck/` was built on 2024-06-14T15:30:03.103Z -->
 	</body>
 </html>
