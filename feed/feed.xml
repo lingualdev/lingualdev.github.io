@@ -13,10 +13,10 @@
 	
 	<entry>
 		<title>Introducing i18n-check - Improving the i18n developer experience</title>
-		<link href="https://www.lingual.dev/blog/introducing-i18n-check"/>
+		<link href="https://www.lingual.dev/blog/introducing-i18n-check/"/>
 		<updated>2024-06-18T00:00:00Z</updated>
-		<id>https://www.lingual.dev/blog/introducing-i18n-check</id>
-		<content type="html">&lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;Introduction &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		<id>https://www.lingual.dev/blog/introducing-i18n-check/</id>
+		<content type="html">&lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;Introduction &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We released &lt;a href=&quot;https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples&quot;&gt;&lt;code&gt;i18n-check&lt;/code&gt;&lt;/a&gt; to help with internalization efforts and support in finding &lt;strong&gt;untranslated&lt;/strong&gt; or &lt;strong&gt;invalid translation messages&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;When working with libraries like &lt;a href=&quot;https://formatjs.io/docs/react-intl/&quot;&gt;&lt;code&gt;react-intl&lt;/code&gt;&lt;/a&gt; or &lt;a href=&quot;https://react.i18next.com/&quot;&gt;&lt;code&gt;react-i18next&lt;/code&gt;&lt;/a&gt; you have the option to use &lt;strong&gt;extraction tools&lt;/strong&gt; to keep the default locale JSON file in sync with your codebase. One advantage of choosing an extraction tool is that every i18n related change (creating, updating or removing keys) is reflected in the JSON file. This JSON file is mostly the basis for all other languages. Removing a key in your base language should result in that key being removed in all other language files and so forth.&lt;/p&gt;
 &lt;p&gt;Most popular libraries already offer one or more code parsers that can create a valid JSON file based on the current state of the code.
@@ -24,7 +24,7 @@ So while the base language can be up to date, &lt;strong&gt;the secondary langua
 &lt;p&gt;Questions like: &lt;em&gt;&amp;quot;How many keys are missing in the fr language file?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;quot;Are all keys valid in the de file?&amp;quot;&lt;/em&gt; might require some work to figure out.&lt;/p&gt;
 &lt;p&gt;As developers we don&#39;t want to actively think about the state of these translations and rather be informed when something is missing or needs updating.
 This is what &lt;code&gt;i18n-check&lt;/code&gt; should help with, having &lt;strong&gt;a tool that tries to compare your secondary languages to the base language files&lt;/strong&gt; and inform about missing or broken/invalid translation keys.&lt;/p&gt;
-&lt;h2 id=&quot;setting-up-i18n-check&quot; tabindex=&quot;-1&quot;&gt;Setting up i18n-check &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;setting-up-i18n-check&quot; tabindex=&quot;-1&quot;&gt;Setting up i18n-check &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To setup &lt;code&gt;i18n-check&lt;/code&gt; run the following command:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--dev&lt;/span&gt; @lingual/i18n-check&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Alternatively if you are using &lt;strong&gt;npm&lt;/strong&gt;:&lt;/p&gt;
@@ -40,7 +40,7 @@ This is what &lt;code&gt;i18n-check&lt;/code&gt; should help with, having &lt;st
 &lt;p&gt;Run the &lt;code&gt;i18n:check&lt;/code&gt; command directly from the command-line, i.e. &lt;code&gt;yarn i18n:check&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Alternatively you can also access the library directly:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;node_modules/.bin/i18n-check&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;checking-against-your-files&quot; tabindex=&quot;-1&quot;&gt;Checking against your files &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;checking-against-your-files&quot; tabindex=&quot;-1&quot;&gt;Checking against your files &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Once you have everything setup, you can run check commands against single files, single folders or a combination of files and/or folders. There are a number of possible check scenarios and these depend on how the localization files are structured in your codebase.&lt;/p&gt;
 &lt;p&gt;To keep this post short, let&#39;s take a look at two possible scenarios (there are more advanced scenarios in the &lt;a href=&quot;https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples&quot;&gt;README&lt;/a&gt;). A basic setup could include a folder called &lt;em&gt;locales&lt;/em&gt; containing a number of translation files organized as &lt;code&gt;en-en.json&lt;/code&gt;, &lt;code&gt;fr-fr.json&lt;/code&gt;, &lt;code&gt;it-it.json&lt;/code&gt; etc:&lt;/p&gt;
 &lt;ul&gt;
@@ -122,7 +122,7 @@ Done &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=
 &lt;p&gt;If you your localization setup is different to the two shown examples, you can check the &lt;a href=&quot;https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples&quot;&gt;examples section in the README&lt;/a&gt; for more advanced scenarios.&lt;/p&gt;
 &lt;p&gt;There are also a number of further &lt;strong&gt;options&lt;/strong&gt; you can use to configure the check even further. For example you can only check for missing keys or only check for broken/invalid translations via the &lt;code&gt;--check&lt;/code&gt; option.&lt;/p&gt;
 &lt;p&gt;There are situations where we want to exclude specific files or folders: this can be done via the &lt;code&gt;--exclude&lt;/code&gt; option. For a more detailed explanation of the available options consult the &lt;a href=&quot;https://github.com/lingualdev/i18n-check?tab=readme-ov-file#options&quot;&gt;options section in the README&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;usage&quot; tabindex=&quot;-1&quot;&gt;Usage &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;usage&quot; tabindex=&quot;-1&quot;&gt;Usage &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are multiple ways to incorporate &lt;code&gt;i18n-check&lt;/code&gt; into your existing workflow. You can run the checks manually on the &lt;strong&gt;CLI&lt;/strong&gt; or add it as &lt;strong&gt;pre-commit hook&lt;/strong&gt;. Further more you can also let it run on the &lt;strong&gt;CI&lt;/strong&gt;, the following is an example of how you could define the Github workflow:&lt;/p&gt;
 &lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; i18n Check
 &lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
@@ -149,12 +149,12 @@ Done &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=
         &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
           yarn i18n-check -t translations/messageExamples -s translations/messageExamples/en-us.json&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;i18n-check&lt;/code&gt; also offers an &lt;strong&gt;API&lt;/strong&gt; you can directly use if you want to trigger these checks programmatically or if you want to build your own wrapper around the checks.&lt;/p&gt;
-&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;Summary &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;Summary &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is the initial release of &lt;code&gt;i18n-checks&lt;/code&gt; and we have some more plans, including creating a &lt;strong&gt;vs code plugin&lt;/strong&gt;, so you can run the checks directly inside your IDE and even get some visual feedback on the state of your translations.&lt;/p&gt;
 &lt;p&gt;Currently the checks only cover &lt;code&gt;icu&lt;/code&gt; and &lt;code&gt;i18next&lt;/code&gt; messages, adding &lt;code&gt;GET&lt;/code&gt; file checks is another todo we are planning to work on.&lt;/p&gt;
 &lt;p&gt;Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give &lt;code&gt;i18n-check&lt;/code&gt; a try and see if the checks can help improve your localization efforts, especially if you are not using a third party saas solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).&lt;/p&gt;
 &lt;p&gt;Checkout &lt;code&gt;i18n-check&lt;/code&gt; &lt;a href=&quot;https://github.com/lingualdev/i18n-check&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;links&quot; tabindex=&quot;-1&quot;&gt;Links &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;links&quot; tabindex=&quot;-1&quot;&gt;Links &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/introducing-i18n-check/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/lingualdev/i18n-check&quot;&gt;i18n-check&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://twitter.com/lingualdev&quot;&gt;Twitter&lt;/a&gt;&lt;/p&gt;
 </content>
