@@ -1,7 +1,8 @@
 ---
 title: Introducing i18n-check - Improving the i18n developer experience
 description: Introduction to i18n-check
-date: 2024-06-13
+date: 2024-06-18
+permalink: blog/introducing-i18n-check
 tags:
 ---
 
@@ -194,3 +195,9 @@ Currently the checks only cover `icu` and `i18next` messages, adding `GET` file 
 Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give `i18n-check` a try and see if the checks can help improve your localization efforts, especially if you are not using a third party saas solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).
 
 Checkout `i18n-check` [here](https://github.com/lingualdev/i18n-check)
+
+## Links
+
+[i18n-check](https://github.com/lingualdev/i18n-check)
+
+[Twitter](https://twitter.com/lingualdev)
