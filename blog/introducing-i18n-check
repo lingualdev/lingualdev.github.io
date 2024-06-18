@@ -472,10 +472,12 @@ img[src$=".svg"] {
 			<a href="/" class="home-link">Lingual</a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<!--
 				<ul class="nav">
 					<li class="nav-item"><a href="/">Home</a></li>
 					<li class="nav-item"><a href="/blog/">Archive</a></li>
 				</ul>
+				-->
 			</nav>
 		</header>
 
@@ -484,7 +486,7 @@ img[src$=".svg"] {
 <h1>Introducing i18n-check - Improving the i18n developer experience</h1>
 
 <ul class="post-metadata">
-	<li><time datetime="2024-06-13">13 June 2024</time></li>
+	<li><time datetime="2024-06-18">18 June 2024</time></li>
 </ul>
 
 <h2 id="introduction" tabindex="-1">Introduction <a class="header-anchor" href="#introduction">#</a></h2>
@@ -625,12 +627,15 @@ Done <span class="token keyword">in</span> <span class="token number">0</span>.0
 <p>Currently the checks only cover <code>icu</code> and <code>i18next</code> messages, adding <code>GET</code> file checks is another todo we are planning to work on.</p>
 <p>Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give <code>i18n-check</code> a try and see if the checks can help improve your localization efforts, especially if you are not using a third party saas solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).</p>
 <p>Checkout <code>i18n-check</code> <a href="https://github.com/lingualdev/i18n-check">here</a></p>
+<h2 id="links" tabindex="-1">Links <a class="header-anchor" href="#links">#</a></h2>
+<p><a href="https://github.com/lingualdev/i18n-check">i18n-check</a></p>
+<p><a href="https://twitter.com/lingualdev">Twitter</a></p>
 
 
 		</main>
 
 		<footer></footer>
 
-		<!-- This page `/blog/i18nCheck/` was built on 2024-06-14T15:30:03.103Z -->
+		<!-- This page `/blog/introducing-i18n-check` was built on 2024-06-18T21:58:23.897Z -->
 	</body>
 </html>
