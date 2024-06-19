@@ -44,7 +44,7 @@ pnpm add --save-dev @lingual/i18n-check
 
 Now update the `package.json` file and add a new command:
 
-```bash
+```json
 "scripts": {
     // ...other commands,
     "i18n:check": "i18n-check"
