@@ -74,6 +74,7 @@ body {
 	font-family: var(--font-family);
 	color: var(--text-color);
 	background-color: var(--background-color);
+	padding-bottom: 64px;
 }
 
 html {
@@ -326,6 +327,10 @@ h2 + .header-anchor {
 	font-size: 1.5em;
 }
 
+h2 {
+	margin-top: 1.5em;
+}
+
 /* https://www.zachleat.com/web/fluid-images/ */
 
 img {
@@ -335,6 +340,7 @@ img {
 img[width][height] {
 	height: auto;
 	/* Preserve aspect ratio */
+	border-radius: 0.3em;
 }
 
 /* Let SVG scale without boundaries */
