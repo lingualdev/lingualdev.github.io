@@ -57,7 +57,7 @@ html {
 }
 
 body {
-	max-width: 60em;
+	max-width: 54em;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -167,7 +167,7 @@ header {
 .home-link {
 	font-size: 1em;
 	/* 16px /16 */
-	font-weight: 700;
+	font-weight: 500;
 	margin-right: 2em;
 }
 
@@ -256,7 +256,7 @@ header {
 	font-style: italic;
 }
 
-.postlist-item>.post-tag {
+.postlist-item > .post-tag {
 	align-self: center;
 }
 
@@ -293,11 +293,11 @@ a[href].header-anchor:hover {
 }
 
 a[href].header-anchor:focus,
-:hover>a[href].header-anchor {
+:hover > a[href].header-anchor {
 	color: #aaa;
 }
 
-h2+.header-anchor {
+h2 + .header-anchor {
 	font-size: 1.5em;
 }
 
@@ -322,13 +322,35 @@ img[src$=".svg"] {
 /* Default page */
 .main {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding-top: 10em;
+	padding: 48px;
+	font-size: 20px;
+	gap: 16px;
 }
 
 .main img[src$=".svg"] {
-	width: 200px;
+	width: 48px;
 	height: auto;
 	max-width: none;
+}
+
+.logo-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1000px;
+	background: #efefef;
+	padding: 16px;
+}
+
+.nav-logo {
+	display: flex;
+	align-items: center;
+	padding-right: 8px;
+}
+.nav-logo img {
+	width: 24px;
+	height: auto;
 }
