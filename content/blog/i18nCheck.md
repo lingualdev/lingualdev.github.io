@@ -17,6 +17,32 @@ So while the base language can be up to date, **the secondary languages** might 
 
 Questions like: _"How many keys are missing in the fr language file?"_ or _"Are all keys valid in the de file?"_ might require some work to figure out.
 
+Missing keys are clear enough to understand, as they either exist in the target language files or not. When it comes to **invalid/broken keys** the situation can be more complex. Potential situations where the key could be in an invalid state can occur when dealing with time or date formats, translations including currency, pluralisation or translations containing tags.
+
+Take the following translations for example:
+
+```json
+// en.json
+"message.greeting": "Hi, <b>{name}</b>!"
+
+// de.json
+"message.greeting": "Hallo {name}!"
+```
+
+The message in the **de.json** file does not contain any tags, while the default language does. They might have been removed during the translation process or were never added in the first place.
+
+```json
+// en.json
+"message.greeting": "Hi {user}, it is {today, date, medium}.",
+
+// de.json
+"message.greeting": "Hallo {user}, heute ist {today, date, medium} und morgen ist {tomorrow, date, medium}.",
+```
+
+In the second example the target translation contains more date information as compared to the source **en.json** file, which could mean that the source and target translations might be out of sync.
+
+The check should inform of potential issues in this case.
+
 As developers we don't want to actively think about the state of these translations and rather be informed when something is missing or needs updating.
 This is what `i18n-check` should help with, having **a tool that tries to compare your secondary languages to the base language files** and inform about missing or broken/invalid translation keys.
 
