@@ -595,11 +595,26 @@ img[src$=".svg"] {
 </ul>
 
 <h2 id="introduction" tabindex="-1">Introduction <a class="header-anchor" href="#introduction">#</a></h2>
-<p>We released <a href="https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples"><code>i18n-check</code></a> to help with internalization efforts and support in finding <strong>untranslated</strong> or <strong>invalid translation messages</strong>.</p>
-<p>When working with libraries like <a href="https://formatjs.io/docs/react-intl/"><code>react-intl</code></a> or <a href="https://react.i18next.com/"><code>react-i18next</code></a> you have the option to use <strong>extraction tools</strong> to keep the default locale JSON file in sync with your codebase. One advantage of choosing an extraction tool is that every i18n related change (creating, updating or removing keys) is reflected in the JSON file. This JSON file is mostly the basis for all other languages. Removing a key in your base language should result in that key being removed in all other language files and so forth.</p>
+<p>We released <a href="https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples"><code>i18n-check</code></a> to help with internationalization efforts and support in finding <strong>untranslated</strong> or <strong>invalid translation messages</strong>.</p>
+<p>When working with libraries like <a href="https://formatjs.io/docs/react-intl/"><code>react-intl</code></a> or <a href="https://react.i18next.com/"><code>react-i18next</code></a> you have the option to use <strong>extraction tools</strong> to keep the default locale JSON file in sync with your codebase. One advantage of choosing an extraction tool is that every i18n related change (creating, updating or removing keys) is reflected in the JSON file. This JSON file is the basis for all other languages. Removing a key in your base language should result in that key being removed in all other languages as well.</p>
 <p>Most popular libraries already offer one or more code parsers that can create a valid JSON file based on the current state of the code.
-So while the base language can be up to date, <strong>the secondary languages</strong> might not be. Additionally if you are not using a third party translation service, you might <strong>lack an overview of the current state of these secondary languages</strong>.</p>
-<p>Questions like: <em>&quot;How many keys are missing in the fr language file?&quot;</em> or <em>&quot;Are all keys valid in the de file?&quot;</em> might require some work to figure out.</p>
+So while the base language can be up-to-date, <strong>the secondary languages</strong> might not be. Additionally if you are not using a third party translation service, you might <strong>lack an overview of the current state of these secondary languages</strong>.</p>
+<p>Questions like: <em>&quot;How many keys are missing in the <code>fr</code> language file?&quot;</em> or <em>&quot;Are all keys valid in the <code>de</code> file?&quot;</em> require a lot of work to figure out.</p>
+<p>Missing keys are clear enough to understand, as they either exist in the target language files or not. When it comes to <strong>invalid/broken keys</strong> the situation can be more complex. Potential situations where the key could be in an invalid state can occur when dealing with time or date formats, translations including currency, pluralisation or translations containing tags.</p>
+<p>Take the following translations for example:</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token comment">// en.json</span>
+<span class="token property">"message.greeting"</span><span class="token operator">:</span> <span class="token string">"Hi, &lt;b>{name}&lt;/b>!"</span>
+
+<span class="token comment">// de.json</span>
+<span class="token property">"message.greeting"</span><span class="token operator">:</span> <span class="token string">"Hallo {name}!"</span></code></pre>
+<p>The message in the <strong>de.json</strong> file does not contain any tags, while the default language does. They might have been removed during the translation process or were never added in the first place.</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token comment">// en.json</span>
+<span class="token property">"message.greeting"</span><span class="token operator">:</span> <span class="token string">"Hi {user}, it is {today, date, medium}."</span><span class="token punctuation">,</span>
+
+<span class="token comment">// de.json</span>
+<span class="token property">"message.greeting"</span><span class="token operator">:</span> <span class="token string">"Hallo {user}, heute ist {today, date, medium} und morgen ist {tomorrow, date, medium}."</span><span class="token punctuation">,</span></code></pre>
+<p>In the second example the target translation contains more date information as compared to the source <strong>en.json</strong> file, which could mean that the source and target translations might be out of sync.</p>
+<p>The check should inform of potential issues in this case.</p>
 <p>As developers we don't want to actively think about the state of these translations and rather be informed when something is missing or needs updating.
 This is what <code>i18n-check</code> should help with, having <strong>a tool that tries to compare your secondary languages to the base language files</strong> and inform about missing or broken/invalid translation keys.</p>
 <h2 id="setting-up-i18n-check" tabindex="-1">Setting up i18n-check <a class="header-anchor" href="#setting-up-i18n-check">#</a></h2>
@@ -619,7 +634,7 @@ This is what <code>i18n-check</code> should help with, having <strong>a tool tha
 <p>Alternatively you can also access the library directly:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">node_modules/.bin/i18n-check</code></pre>
 <h2 id="checking-against-your-files" tabindex="-1">Checking against your files <a class="header-anchor" href="#checking-against-your-files">#</a></h2>
-<p>Once you have everything setup, you can run check commands against single files, single folders or a combination of files and/or folders. There are a number of possible check scenarios and these depend on how the localization files are structured in your codebase.</p>
+<p>Once you have everything set up, you can run <code>check</code> commands against single files, single folders or a combination of files and folders. There are a number of possible check scenarios and these depend on how the localization files are structured in your codebase.</p>
 <p>To keep this post short, let's take a look at two possible scenarios (there are more advanced scenarios in the <a href="https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples">README</a>). A basic setup could include a folder called <em>locales</em> containing a number of translation files organized as <code>en-en.json</code>, <code>fr-fr.json</code>, <code>it-it.json</code> etc:</p>
 <ul>
 <li>locales/
@@ -728,9 +743,9 @@ Done <span class="token keyword">in</span> <span class="token number">0</span>.0
           yarn i18n-check -t translations/messageExamples -s translations/messageExamples/en-us.json</span></code></pre>
 <p><code>i18n-check</code> also offers an <strong>API</strong> you can directly use if you want to trigger these checks programmatically or if you want to build your own wrapper around the checks.</p>
 <h2 id="summary" tabindex="-1">Summary <a class="header-anchor" href="#summary">#</a></h2>
-<p>This is the initial release of <code>i18n-checks</code> and we have some more plans, including creating a <strong>vs code plugin</strong>, so you can run the checks directly inside your IDE and even get some visual feedback on the state of your translations.</p>
-<p>Currently the checks only cover <code>icu</code> and <code>i18next</code> messages, adding <code>GET</code> file checks is another todo we are planning to work on.</p>
-<p>Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give <code>i18n-check</code> a try and see if the checks can help improve your localization efforts, especially if you are not using a third party saas solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).</p>
+<p>This is the initial release of <code>i18n-check</code> and we have some more plans, including creating a <strong>VS Code plugin</strong>, so you can run the checks directly inside your IDE and even get some visual feedback on the state of your translations.</p>
+<p>Currently the checks only cover <code>icu</code> and <code>i18next</code> messages, adding <code>gettext</code> file checks is another todo we are planning to work on.</p>
+<p>Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give <code>i18n-check</code> a try and see if the checks can help improve your localization efforts, especially if you are not using a third party SaaS solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).</p>
 <p>Checkout <code>i18n-check</code> <a href="https://github.com/lingualdev/i18n-check">here</a></p>
 <h2 id="links" tabindex="-1">Links <a class="header-anchor" href="#links">#</a></h2>
 <p><a href="https://github.com/lingualdev/i18n-check">i18n-check</a></p>
@@ -741,7 +756,7 @@ Done <span class="token keyword">in</span> <span class="token number">0</span>.0
 
 <footer></footer>
 
-<!-- This page `/blog/introducing-i18n-check/` was built on 2024-06-20T07:19:23.806Z -->
+<!-- This page `/blog/introducing-i18n-check/` was built on 2024-06-20T18:43:22.387Z -->
 
 	</body>
 </html>
