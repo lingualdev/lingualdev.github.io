@@ -9,29 +9,26 @@
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Lingual">
 		
 		<style>/**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
  */
 
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #f8f8f2;
 	background: none;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1em;
+	font-family: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
 	line-height: 1.5;
-
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
@@ -48,7 +45,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #272822;
+	background: #2E3440;
 }
 
 /* Inline code */
@@ -62,14 +59,14 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #8292a2;
+	color: #636f88;
 }
 
 .token.punctuation {
-	color: #f8f8f2;
+	color: #81A1C1;
 }
 
-.token.namespace {
+.namespace {
 	opacity: .7;
 }
 
@@ -78,12 +75,15 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #f92672;
+	color: #81A1C1;
 }
 
-.token.boolean,
 .token.number {
-	color: #ae81ff;
+	color: #B48EAD;
+}
+
+.token.boolean {
+	color: #81A1C1;
 }
 
 .token.selector,
@@ -92,7 +92,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #a6e22e;
+	color: #A3BE8C;
 }
 
 .token.operator,
@@ -101,29 +101,30 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-	color: #f8f8f2;
+	color: #81A1C1;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.function,
 .token.class-name {
-	color: #e6db74;
+	color: #88C0D0;
 }
 
 .token.keyword {
-	color: #66d9ef;
+	color: #81A1C1;
 }
 
 .token.regex,
 .token.important {
-	color: #fd971f;
+	color: #EBCB8B;
 }
 
 .token.important,
 .token.bold {
 	font-weight: bold;
 }
+
 .token.italic {
 	font-style: italic;
 }
@@ -178,8 +179,32 @@ pre[class*="language-diff-"] {
 }
 * { box-sizing: border-box; }
 /* Defaults */
+
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "InterVariable", sans-serif;
+		font-optical-sizing: auto;
+	}
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
+}
+
 :root {
-	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family: "InterVariable", -apple-system, system-ui, sans-serif;
 	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
 		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
 		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
@@ -190,14 +215,14 @@ pre[class*="language-diff-"] {
 :root {
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #c0c0c0;
-	--color-gray-90: #333;
+	--color-gray-90: #27272a;
 
 	--background-color: #fff;
 
 	--text-color: var(--color-gray-90);
-	--text-color-link: #082840;
-	--text-color-link-active: #5f2b48;
-	--text-color-link-visited: #17050f;
+	--text-color-link: #0284c7;
+	--text-color-link-active: #0369a1;
+	--text-color-link-visited: #0284c7;
 
 	--syntax-tab-size: 2;
 }
@@ -209,9 +234,9 @@ pre[class*="language-diff-"] {
 		--color-gray-90: #dad8d8;
 
 		/* --text-color is assigned to --color-gray-_ above */
-		--text-color-link: #1493fb;
-		--text-color-link-active: #6969f7;
-		--text-color-link-visited: #a6a6f8;
+		--text-color-link: #0284c7;
+		--text-color-link-active: #0369a1;
+		--text-color-link-visited: #0284c7;
 
 		--background-color: #15202b;
 	}
@@ -229,6 +254,7 @@ body {
 	font-family: var(--font-family);
 	color: var(--text-color);
 	background-color: var(--background-color);
+	padding-bottom: 64px;
 }
 
 html {
@@ -348,6 +374,7 @@ header {
 	/* 16px /16 */
 	font-weight: 500;
 	margin-right: 2em;
+	color: var(--text-color) !important;
 }
 
 .home-link:link:not(:hover) {
@@ -480,6 +507,10 @@ h2 + .header-anchor {
 	font-size: 1.5em;
 }
 
+h2 {
+	margin-top: 1.5em;
+}
+
 /* https://www.zachleat.com/web/fluid-images/ */
 
 img {
@@ -489,6 +520,7 @@ img {
 img[width][height] {
 	height: auto;
 	/* Preserve aspect ratio */
+	border-radius: 0.3em;
 }
 
 /* Let SVG scale without boundaries */
@@ -579,9 +611,9 @@ This is what <code>i18n-check</code> should help with, having <strong>a tool tha
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">pnpm</span> <span class="token function">add</span> --save-dev @lingual/i18n-check</code></pre>
 <p><code>i18n-check</code> can either be accessed via defining a command in the <code>package.json</code> file or directly in the CLI after running the installation command.</p>
 <p>Now update the <code>package.json</code> file and add a new command:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token string">"scripts"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
-    // <span class="token punctuation">..</span>.other commands,
-    <span class="token string">"i18n:check"</span><span class="token builtin class-name">:</span> <span class="token string">"i18n-check"</span>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...other commands,</span>
+    <span class="token property">"i18n:check"</span><span class="token operator">:</span> <span class="token string">"i18n-check"</span>
 <span class="token punctuation">}</span></code></pre>
 <p>Run the <code>i18n:check</code> command directly from the command-line, i.e. <code>yarn i18n:check</code>.</p>
 <p>Alternatively you can also access the library directly:</p>
@@ -601,7 +633,7 @@ This is what <code>i18n-check</code> should help with, having <strong>a tool tha
 <p>You can use the <code>-t</code> or <code>--target</code> option to define the directory that contains the target files and with the <code>-s</code> or <code>--source</code> option you can specify the base/reference file to compare the target files against.</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">yarn</span> i18n:check <span class="token parameter variable">-t</span> locales <span class="token parameter variable">-s</span> locales/en-en.json</code></pre>
 <p>In the above scenario the <code>i18n-check</code> will compare the <code>fr-fr.json</code> and <code>it-it.json</code> file against the <code>en-en.json</code> file and check for any missing or broken keys. Running the above command might return the following result:</p>
-<p><picture><source type="image/avif" srcset="/img/1od_GqfDuY-1224.avif 1224w"><source type="image/webp" srcset="/img/1od_GqfDuY-1224.webp 1224w"><img alt="lingual-i18n-check example 1" loading="lazy" decoding="async" src="/img/1od_GqfDuY-1224.png" width="1224" height="591"></picture></p>
+<p><picture><source type="image/avif" srcset="/img/PIE2-IvB7z-1221.avif 1221w"><source type="image/webp" srcset="/img/PIE2-IvB7z-1221.webp 1221w"><img alt="lingual-i18n-check example 1" loading="lazy" decoding="async" src="/img/PIE2-IvB7z-1221.png" width="1221" height="588"></picture></p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">i18n translations checker
 Source file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>: locales/en-en.json
 
@@ -709,7 +741,7 @@ Done <span class="token keyword">in</span> <span class="token number">0</span>.0
 
 <footer></footer>
 
-<!-- This page `/blog/introducing-i18n-check/` was built on 2024-06-20T07:18:49.075Z -->
+<!-- This page `/blog/introducing-i18n-check/` was built on 2024-06-20T07:19:23.806Z -->
 
 	</body>
 </html>

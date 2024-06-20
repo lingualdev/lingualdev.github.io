@@ -10,8 +10,32 @@
 		
 		<style>* { box-sizing: border-box; }
 /* Defaults */
+
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "InterVariable", sans-serif;
+		font-optical-sizing: auto;
+	}
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
+}
+
 :root {
-	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family: "InterVariable", -apple-system, system-ui, sans-serif;
 	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
 		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
 		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
@@ -22,14 +46,14 @@
 :root {
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #c0c0c0;
-	--color-gray-90: #333;
+	--color-gray-90: #27272a;
 
 	--background-color: #fff;
 
 	--text-color: var(--color-gray-90);
-	--text-color-link: #082840;
-	--text-color-link-active: #5f2b48;
-	--text-color-link-visited: #17050f;
+	--text-color-link: #0284c7;
+	--text-color-link-active: #0369a1;
+	--text-color-link-visited: #0284c7;
 
 	--syntax-tab-size: 2;
 }
@@ -41,9 +65,9 @@
 		--color-gray-90: #dad8d8;
 
 		/* --text-color is assigned to --color-gray-_ above */
-		--text-color-link: #1493fb;
-		--text-color-link-active: #6969f7;
-		--text-color-link-visited: #a6a6f8;
+		--text-color-link: #0284c7;
+		--text-color-link-active: #0369a1;
+		--text-color-link-visited: #0284c7;
 
 		--background-color: #15202b;
 	}
@@ -61,6 +85,7 @@ body {
 	font-family: var(--font-family);
 	color: var(--text-color);
 	background-color: var(--background-color);
+	padding-bottom: 64px;
 }
 
 html {
@@ -180,6 +205,7 @@ header {
 	/* 16px /16 */
 	font-weight: 500;
 	margin-right: 2em;
+	color: var(--text-color) !important;
 }
 
 .home-link:link:not(:hover) {
@@ -312,6 +338,10 @@ h2 + .header-anchor {
 	font-size: 1.5em;
 }
 
+h2 {
+	margin-top: 1.5em;
+}
+
 /* https://www.zachleat.com/web/fluid-images/ */
 
 img {
@@ -321,6 +351,7 @@ img {
 img[width][height] {
 	height: auto;
 	/* Preserve aspect ratio */
+	border-radius: 0.3em;
 }
 
 /* Let SVG scale without boundaries */
@@ -399,7 +430,7 @@ img[src$=".svg"] {
 
 <footer></footer>
 
-<!-- This page `/tags/` was built on 2024-06-20T07:18:49.075Z -->
+<!-- This page `/tags/` was built on 2024-06-20T07:19:23.806Z -->
 
 	</body>
 </html>
