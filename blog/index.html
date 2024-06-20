@@ -69,7 +69,7 @@ html {
 }
 
 body {
-	max-width: 60em;
+	max-width: 54em;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -179,7 +179,7 @@ header {
 .home-link {
 	font-size: 1em;
 	/* 16px /16 */
-	font-weight: 700;
+	font-weight: 500;
 	margin-right: 2em;
 }
 
@@ -268,7 +268,7 @@ header {
 	font-style: italic;
 }
 
-.postlist-item>.post-tag {
+.postlist-item > .post-tag {
 	align-self: center;
 }
 
@@ -305,11 +305,11 @@ a[href].header-anchor:hover {
 }
 
 a[href].header-anchor:focus,
-:hover>a[href].header-anchor {
+:hover > a[href].header-anchor {
 	color: #aaa;
 }
 
-h2+.header-anchor {
+h2 + .header-anchor {
 	font-size: 1.5em;
 }
 
@@ -334,36 +334,61 @@ img[src$=".svg"] {
 /* Default page */
 .main {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding-top: 10em;
+	padding: 48px;
+	font-size: 20px;
+	gap: 16px;
 }
 
 .main img[src$=".svg"] {
-	width: 200px;
+	width: 48px;
 	height: auto;
 	max-width: none;
+}
+
+.logo-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1000px;
+	background: #efefef;
+	padding: 16px;
+}
+
+.nav-logo {
+	display: flex;
+	align-items: center;
+	padding-right: 8px;
+}
+.nav-logo img {
+	width: 24px;
+	height: auto;
 }</style>
 		<link rel="icon" href="/img/lingual.svg" type="image/svg+xml">
 	</head>
 	<body>
-		<a href="#skip" class="visually-hidden">Skip to main content</a>
+        
+<a href="#skip" class="visually-hidden">Skip to main content</a>
 
-		<header>
-			<a href="/" class="home-link">Lingual</a>
-			<nav>
-				<h2 class="visually-hidden">Top level navigation menu</h2>
-				<!--
-				<ul class="nav">
-					<li class="nav-item"><a href="/">Home</a></li>
-					<li class="nav-item"><a href="/blog/" aria-current="page">Archive</a></li>
-				</ul>
-				-->
-			</nav>
-		</header>
+<header>
 
-		<main id="skip">
-			
+	<div class="nav-logo"><img src="/img/lingual.svg"></div>
+	<a href="/" class="home-link">Lingual</a>
+	<nav>
+		<h2 class="visually-hidden">Top level navigation menu</h2>
+		<!--
+		<ul class="nav">
+			<li class="nav-item"><a href="/">Home</a></li>
+			<li class="nav-item"><a href="/blog/" aria-current="page">Archive</a></li>
+		</ul>
+		-->
+	</nav>
+</header>
+
+<main id="skip">
+	
 <h1>Archive</h1>
 
 
@@ -379,10 +404,11 @@ img[src$=".svg"] {
 
 
 
-		</main>
+</main>
 
-		<footer></footer>
+<footer></footer>
 
-		<!-- This page `/blog/` was built on 2024-06-18T23:20:11.718Z -->
+<!-- This page `/blog/` was built on 2024-06-20T07:18:49.075Z -->
+
 	</body>
 </html>
