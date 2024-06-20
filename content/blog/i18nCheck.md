@@ -8,14 +8,14 @@ tags:
 
 ## Introduction
 
-We released [`i18n-check`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to help with internalization efforts and support in finding **untranslated** or **invalid translation messages**.
+We released [`i18n-check`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to help with internationalization efforts and support in finding **untranslated** or **invalid translation messages**.
 
-When working with libraries like [`react-intl`](https://formatjs.io/docs/react-intl/) or [`react-i18next`](https://react.i18next.com/) you have the option to use **extraction tools** to keep the default locale JSON file in sync with your codebase. One advantage of choosing an extraction tool is that every i18n related change (creating, updating or removing keys) is reflected in the JSON file. This JSON file is mostly the basis for all other languages. Removing a key in your base language should result in that key being removed in all other language files and so forth.
+When working with libraries like [`react-intl`](https://formatjs.io/docs/react-intl/) or [`react-i18next`](https://react.i18next.com/) you have the option to use **extraction tools** to keep the default locale JSON file in sync with your codebase. One advantage of choosing an extraction tool is that every i18n related change (creating, updating or removing keys) is reflected in the JSON file. This JSON file is the basis for all other languages. Removing a key in your base language should result in that key being removed in all other languages as well.
 
 Most popular libraries already offer one or more code parsers that can create a valid JSON file based on the current state of the code.
-So while the base language can be up to date, **the secondary languages** might not be. Additionally if you are not using a third party translation service, you might **lack an overview of the current state of these secondary languages**.
+So while the base language can be up-to-date, **the secondary languages** might not be. Additionally if you are not using a third party translation service, you might **lack an overview of the current state of these secondary languages**.
 
-Questions like: _"How many keys are missing in the fr language file?"_ or _"Are all keys valid in the de file?"_ might require some work to figure out.
+Questions like: _"How many keys are missing in the `fr` language file?"_ or _"Are all keys valid in the `de` file?"_ require a lot of work to figure out.
 
 Missing keys are clear enough to understand, as they either exist in the target language files or not. When it comes to **invalid/broken keys** the situation can be more complex. Potential situations where the key could be in an invalid state can occur when dealing with time or date formats, translations including currency, pluralisation or translations containing tags.
 
@@ -87,7 +87,7 @@ node_modules/.bin/i18n-check
 
 ## Checking against your files
 
-Once you have everything setup, you can run check commands against single files, single folders or a combination of files and/or folders. There are a number of possible check scenarios and these depend on how the localization files are structured in your codebase.
+Once you have everything set up, you can run `check` commands against single files, single folders or a combination of files and folders. There are a number of possible check scenarios and these depend on how the localization files are structured in your codebase.
 
 To keep this post short, let's take a look at two possible scenarios (there are more advanced scenarios in the [README](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples)). A basic setup could include a folder called _locales_ containing a number of translation files organized as `en-en.json`, `fr-fr.json`, `it-it.json` etc:
 
@@ -214,11 +214,11 @@ jobs:
 
 ## Summary
 
-This is the initial release of `i18n-checks` and we have some more plans, including creating a **vs code plugin**, so you can run the checks directly inside your IDE and even get some visual feedback on the state of your translations.
+This is the initial release of `i18n-check` and we have some more plans, including creating a **VS Code plugin**, so you can run the checks directly inside your IDE and even get some visual feedback on the state of your translations.
 
-Currently the checks only cover `icu` and `i18next` messages, adding `GET` file checks is another todo we are planning to work on.
+Currently the checks only cover `icu` and `i18next` messages, adding `gettext` file checks is another todo we are planning to work on.
 
-Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give `i18n-check` a try and see if the checks can help improve your localization efforts, especially if you are not using a third party saas solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).
+Aside from the aforementioned, we will try to fix any missing scenarios in regards to real world localization setups. We encourage to give `i18n-check` a try and see if the checks can help improve your localization efforts, especially if you are not using a third party SaaS solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).
 
 Checkout `i18n-check` [here](https://github.com/lingualdev/i18n-check)
 
