@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Making your translation keys type-safe in React</title>
+		<meta name="description" content="Improving the i18n developer experience">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lingual">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Lingual">
+		
+		<style>/**
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	font-family: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #2E3440;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #636f88;
+}
+
+.token.punctuation {
+	color: #81A1C1;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #81A1C1;
+}
+
+.token.number {
+	color: #B48EAD;
+}
+
+.token.boolean {
+	color: #81A1C1;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #A3BE8C;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #81A1C1;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #88C0D0;
+}
+
+.token.keyword {
+	color: #81A1C1;
+}
+
+.token.regex,
+.token.important {
+	color: #EBCB8B;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+* { box-sizing: border-box; }
+/* Defaults */
+
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "InterVariable", sans-serif;
+		font-optical-sizing: auto;
+	}
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
+}
+
+:root {
+	--font-family: "InterVariable", -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
+		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
+		Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #c0c0c0;
+	--color-gray-90: #27272a;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #0284c7;
+	--text-color-link-active: #0369a1;
+	--text-color-link-visited: #0284c7;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #c0c0c0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #0284c7;
+		--text-color-link-active: #0369a1;
+		--text-color-link-visited: #0284c7;
+
+		--background-color: #15202b;
+	}
+}
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+	padding-bottom: 64px;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	max-width: 54em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+}
+
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+header:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.links-nextprev {
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+
+pre:not([class*="language-"]) {
+	margin: 0.5em 0;
+	line-height: 1.375;
+	/* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+}
+
+code {
+	padding: 0.2em 0.4em;
+	margin: 0;
+	font-size: 85%;
+	white-space: break-spaces;
+	border-radius: 6px;
+	background: #eee;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em 0.5em;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1em;
+}
+
+.home-link {
+	font-size: 1em;
+	/* 16px /16 */
+	font-weight: 500;
+	margin-right: 2em;
+	color: var(--text-color) !important;
+}
+
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em;
+	/* 13px /16 */
+	color: var(--color-gray-90);
+}
+
+.postlist-date {
+	word-spacing: -0.5px;
+}
+
+.postlist-link {
+	font-size: 1.1875em;
+	/* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: 0.25em;
+	padding-right: 0.5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-style: italic;
+}
+
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: 0.1em;
+}
+
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+}
+
+h2 {
+	margin-top: 1.5em;
+}
+
+/* https://www.zachleat.com/web/fluid-images/ */
+
+img {
+	max-width: 100%;
+}
+
+img[width][height] {
+	height: auto;
+	/* Preserve aspect ratio */
+	border-radius: 0.3em;
+}
+
+/* Let SVG scale without boundaries */
+img[src$=".svg"] {
+	width: 100%;
+	height: auto;
+	max-width: none;
+}
+
+/* Default page */
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 48px;
+	font-size: 20px;
+	gap: 16px;
+}
+
+.main img[src$=".svg"] {
+	width: 48px;
+	height: auto;
+	max-width: none;
+}
+
+.logo-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1000px;
+	background: #efefef;
+	padding: 16px;
+}
+
+.nav-logo {
+	display: flex;
+	align-items: center;
+	padding-right: 8px;
+}
+
+.nav-logo img {
+	width: 24px;
+	height: auto;
+}</style>
+		<link rel="icon" href="/img/lingual.svg" type="image/svg+xml">
+	</head>
+	<body>
+        
+<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+<header>
+
+	<div class="nav-logo"><img src="/img/lingual.svg"></div>
+	<a href="/" class="home-link">Lingual</a>
+	<nav>
+		<h2 class="visually-hidden">Top level navigation menu</h2>
+		<!--
+		<ul class="nav">
+			<li class="nav-item"><a href="/">Home</a></li>
+			<li class="nav-item"><a href="/blog/">Archive</a></li>
+		</ul>
+		-->
+	</nav>
+</header>
+
+<main id="skip">
+	
+<h1>Making your translation keys type-safe in React</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2024-06-27">27 June 2024</time></li>
+	<li><a href="/tags/react/" class="post-tag">react</a>, </li>
+	<li><a href="/tags/i18n/" class="post-tag">i18n</a>, </li>
+	<li><a href="/tags/typescript/" class="post-tag">typescript</a></li>
+</ul>
+
+<h2 id="introduction" tabindex="-1">Introduction <a class="header-anchor" href="#introduction">#</a></h2>
+<p>With <strong>TypeScript</strong> being the de-facto standard way to write <strong>React</strong> applications it only makes sense to expand the <strong>type-safety</strong> to our translations, specifically our translation keys.</p>
+<p>No matter if you are using one of the popular <strong>i18n</strong> libraries like <a href="https://react.i18next.com/">react-i18next</a> or <a href="https://formatjs.io/docs/react-intl/#the-react-intl-package">react-intl</a> or other internationalisation packages, you will probably want to explore how useful expanding type-checking to translation keys can be.</p>
+<p>While most modern libraries already offer TypeScript support for setting up the library as well as interacting with the API, the translation keys themselves are often typed as a simple <code>string</code> type. This approach makes sense, as in most cases you will be adding new keys, not using existing ones. But there are scenarios where leveraging TypeScript to make your keys type-safe is still a benefit.</p>
+<p>Depending on your setup there can be situations where catching incorrect or missing keys before they reach production can be achieved by making them type-safe, as opposed to using <strong>validation libraries</strong> or <strong>linters</strong>. Aside from that, a side-effect of type-safety is improved <strong>autocomplete/intellisense capabilities</strong>.</p>
+<p>With that being said, one should also consider some limitations and issues that can arise from this approach. It requires to have the <strong>message files up to date</strong>, meaning the keys and translations have to already exist in your locale files, otherwise TypeScript will keep complaining about non-existent keys.</p>
+<p>In other words, if you create the <strong>message IDs</strong> and <strong>default translations</strong> in your code via i18n specific components (i.e. <code>FormatMessage</code>) or functions (i.e. <code>formatMessage</code> or <code>t</code>), and then create the locale files via an extraction script based on that code, then the type-safe keys approach is suboptimal. This is where tools like linters or checkers running as a pre-commit hook or on the CI are preferable.</p>
+<p>This write-up will go through the setup for two popular libraries in React-land: <code>react-i18next</code> and <code>react-intl</code>. As a side-note: if you have a specific library that could use TypeScript support, don't hesitate to let us know on <a href="https://twitter.com/lingualdev">Twitter</a>, we might write a follow-up on the topic if there is enough interest.</p>
+<h2 id="making-your-translation-keys-type-safe" tabindex="-1">Making your translation keys type-safe <a class="header-anchor" href="#making-your-translation-keys-type-safe">#</a></h2>
+<p>The following sections are mainly for existing users of either <code>react-i18next</code> or <code>react-intl</code> as we will not talk about how to set up these libraries, but only focus on the actual setup to make translation keys type-safe.</p>
+<h2 id="type-safe-translation-keys-in-react-i18next" tabindex="-1">Type-safe translation keys in react-i18next <a class="header-anchor" href="#type-safe-translation-keys-in-react-i18next">#</a></h2>
+<p>The first thing we need to do according to the <a href="https://www.i18next.com/overview/typescript">documentation</a> is to add a <code>i18next.d.ts</code> file, as we will need to augment the TypeScript definition:</p>
+<pre class="language-ts" tabindex="0"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">"i18next"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> ns1 <span class="token keyword">from</span> <span class="token string">"locales/en/ns1.json"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ns2 <span class="token keyword">from</span> <span class="token string">"locales/en/ns2.json"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">declare</span> <span class="token keyword">module</span> <span class="token string">"i18next"</span> <span class="token punctuation">{</span>
+	<span class="token keyword">interface</span> <span class="token class-name">CustomTypeOptions</span> <span class="token punctuation">{</span>
+		defaultNS<span class="token operator">:</span> <span class="token string">"ns1"</span><span class="token punctuation">;</span>
+		resources<span class="token operator">:</span> <span class="token punctuation">{</span>
+			ns1<span class="token operator">:</span> <span class="token keyword">typeof</span> ns1<span class="token punctuation">;</span>
+			ns2<span class="token operator">:</span> <span class="token keyword">typeof</span> ns2<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">;</span>
+		<span class="token comment">// ...</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Alternatively we can also create an <code>i18n.ts</code> file to initialize <code>i18next</code> and prepare the resources:</p>
+<pre class="language-ts" tabindex="0"><code class="language-ts"><span class="token keyword">import</span> i18n <span class="token keyword">from</span> <span class="token string">"i18next"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> initReactI18next <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-i18next"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> ns1 <span class="token keyword">from</span> <span class="token string">"./locales/en/ns1.json"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ns2 <span class="token keyword">from</span> <span class="token string">"./locales/en/ns2.json"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> defaultNS <span class="token operator">=</span> <span class="token string">"ns1"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> resources <span class="token operator">=</span> <span class="token punctuation">{</span>
+	ns1<span class="token punctuation">,</span>
+	ns2<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">as</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+
+i18n<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>initReactI18next<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+	debug<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	fallbackLng<span class="token operator">:</span> <span class="token string">"en"</span><span class="token punctuation">,</span>
+	defaultNS<span class="token punctuation">,</span>
+	resources<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Now we can directly import <code>i18n.ts</code> in our <code>i18-next.d.ts</code> file:</p>
+<pre class="language-ts" tabindex="0"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> defaultNS<span class="token punctuation">,</span> resources <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./i18n"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">declare</span> <span class="token keyword">module</span> <span class="token string">"i18next"</span> <span class="token punctuation">{</span>
+	<span class="token keyword">interface</span> <span class="token class-name">CustomTypeOptions</span> <span class="token punctuation">{</span>
+		defaultNS<span class="token operator">:</span> <span class="token keyword">typeof</span> defaultNS<span class="token punctuation">;</span>
+		resources<span class="token operator">:</span> <span class="token keyword">typeof</span> resources<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Note that there is a <a href="https://www.i18next.com/overview/typescript#custom-type-options">list of available custom type options</a> we can override under the <code>CustomTypeOptions</code> in the newly created <code>i18next.d.ts</code> file.</p>
+<p>This change enables us now to use the <code>t</code> function in a way, that we can only access keys that already exist in our internationalisation files:</p>
+<p><picture><source type="image/avif" srcset="/img/pgYte229A8-801.avif 801w"><source type="image/webp" srcset="/img/pgYte229A8-801.webp 801w"><img alt="i18next t function autocomplete" loading="lazy" decoding="async" src="/img/pgYte229A8-801.png" width="801" height="326"></picture></p>
+<p>The same goes for the <code>&lt;Trans&gt;</code> component, which now checks that the provided <code>i18nKey</code> is an existing key and otherwise will error:</p>
+<p><picture><source type="image/avif" srcset="/img/9CqME-uDDL-801.avif 801w"><source type="image/webp" srcset="/img/9CqME-uDDL-801.webp 801w"><img alt="i18next trans component autocomplete" loading="lazy" decoding="async" src="/img/9CqME-uDDL-801.png" width="801" height="282"></picture></p>
+<p>Also <code>useTranslation</code> will only accept valid namespaces from here on out:</p>
+<p><picture><source type="image/avif" srcset="/img/jrcaW4ccDI-800.avif 800w"><source type="image/webp" srcset="/img/jrcaW4ccDI-800.webp 800w"><img alt="i18next namespace autocomplete" loading="lazy" decoding="async" src="/img/jrcaW4ccDI-800.png" width="800" height="287"></picture></p>
+<p>Should you still run into some issues when trying to set up the TypeScript support, the <a href="https://www.i18next.com/overview/typescript#troubleshooting">documentation has a troubleshooting section</a></p>
+<h2 id="type-safe-translation-keys-in-react-intl" tabindex="-1">Type-safe translation keys in react-intl <a class="header-anchor" href="#type-safe-translation-keys-in-react-intl">#</a></h2>
+<p>Adding support for typed message IDs in <code>react-intl</code> can be achieved by following the <a href="https://formatjs.io/docs/react-intl/#typing-message-ids-and-locale">documentation</a>.
+To change the standard <code>string</code> type for message keys to a more restrictive type we need to override the global <code>FormatjsIntl</code> namespace.
+We can create a file called <code>react-intl.d.ts</code> and add the following code:</p>
+<pre class="language-ts" tabindex="0"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> messages<span class="token punctuation">,</span> <span class="token constant">LOCALES</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./i18n/messages"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> defaultMessages <span class="token operator">=</span> messages<span class="token punctuation">[</span><span class="token constant">LOCALES</span><span class="token punctuation">.</span><span class="token constant">ENGLISH</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">declare</span> global <span class="token punctuation">{</span>
+	<span class="token keyword">namespace</span> FormatjsIntl <span class="token punctuation">{</span>
+		<span class="token keyword">interface</span> <span class="token class-name">Message</span> <span class="token punctuation">{</span>
+			ids<span class="token operator">:</span> <span class="token keyword">keyof</span> <span class="token keyword">typeof</span> defaultMessages<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>We are using <code>defaultMessages</code> here, as we are interested in the existing keys in the default language. Technically any object containing messages that we can also pass to the <code>IntlProvider</code> is valid.</p>
+<p>By overriding the <code>FormatjsIntl</code> namespace, we can leverage autocomplete/intellisense and error checking inside our codebase. This works for both the <code>&lt;FormattedMessage&gt;</code> component as well as the <code>formatMessage</code> function, which now only accept an <code>id</code> property that also exists in the messages object.</p>
+<p>We now have autocomplete for all existing messages:</p>
+<p><picture><source type="image/avif" srcset="/img/V8zU_Xl9ez-801.avif 801w"><source type="image/webp" srcset="/img/V8zU_Xl9ez-801.webp 801w"><img alt="react-intl autocomplete" loading="lazy" decoding="async" src="/img/V8zU_Xl9ez-801.png" width="801" height="401"></picture></p>
+<p>TypeScript will complain if the message ID does not exist:</p>
+<p><picture><source type="image/avif" srcset="/img/FYiWyswYPi-802.avif 802w"><source type="image/webp" srcset="/img/FYiWyswYPi-802.webp 802w"><img alt="react-intl TypeScript error" loading="lazy" decoding="async" src="/img/FYiWyswYPi-802.png" width="802" height="338"></picture></p>
+<h2 id="summary" tabindex="-1">Summary <a class="header-anchor" href="#summary">#</a></h2>
+<p>Adding TypeScript for validating against incorrect or missing keys can be a useful strategy if your message keys are defined outside the React code and then referenced via an <code>id</code> property. Not only does this enable capabilities like autocomplete, it also helps to catch non-existent or wrong key names before they land in production.</p>
+<p>If your internationalisation workflow is based on creating the keys directly in the code and then extracting them from that code, using linters or checkers might be more useful. TypeScript will complain about invalid keys, but these keys might be extracted or updated in the message files at a different point in time, i.e. as a pre-commit hook.</p>
+<p>If you have any questions or want to leave some feedback, you can find us on <a href="https://twitter.com/lingualdev">Twitter</a>.</p>
+<h2 id="links" tabindex="-1">Links <a class="header-anchor" href="#links">#</a></h2>
+<p><a href="https://formatjs.io/docs/react-intl/#typing-message-ids-and-locale">react-intl: typing message IDs and locale</a></p>
+<p><a href="https://www.i18next.com/overview/typescripts">i18next: TypeScript</a></p>
+
+<ul class="links-nextprev"><li>Previous: <a href="/blog/introducing-i18n-check/">Introducing i18n-check - Improving the i18n developer experience</a></li>
+</ul>
+
+</main>
+
+<footer></footer>
+
+<!-- This page `/blog/making-your-translation-keys-type-safe-in-react-typescript/` was built on 2024-06-26T22:49:54.654Z -->
+
+	</body>
+</html>

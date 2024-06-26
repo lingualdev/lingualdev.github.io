@@ -4,12 +4,112 @@
 	<subtitle>Improving the i18n developer experience</subtitle>
 	<link href="https://www.lingual.dev/feed/feed.xml" rel="self"/>
 	<link href="https://www.lingual.dev/"/>
-	<updated>2024-06-18T00:00:00Z</updated>
+	<updated>2024-06-27T00:00:00Z</updated>
 	<id>https://www.lingual.dev/</id>
 	<author>
 		<name></name>
 		<email></email>
 	</author>
+	
+	<entry>
+		<title>Making your translation keys type-safe in React</title>
+		<link href="https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/"/>
+		<updated>2024-06-27T00:00:00Z</updated>
+		<id>https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/</id>
+		<content type="html">&lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;Introduction &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With &lt;strong&gt;TypeScript&lt;/strong&gt; being the de-facto standard way to write &lt;strong&gt;React&lt;/strong&gt; applications it only makes sense to expand the &lt;strong&gt;type-safety&lt;/strong&gt; to our translations, specifically our translation keys.&lt;/p&gt;
+&lt;p&gt;No matter if you are using one of the popular &lt;strong&gt;i18n&lt;/strong&gt; libraries like &lt;a href=&quot;https://react.i18next.com/&quot;&gt;react-i18next&lt;/a&gt; or &lt;a href=&quot;https://formatjs.io/docs/react-intl/#the-react-intl-package&quot;&gt;react-intl&lt;/a&gt; or other internationalisation packages, you will probably want to explore how useful expanding type-checking to translation keys can be.&lt;/p&gt;
+&lt;p&gt;While most modern libraries already offer TypeScript support for setting up the library as well as interacting with the API, the translation keys themselves are often typed as a simple &lt;code&gt;string&lt;/code&gt; type. This approach makes sense, as in most cases you will be adding new keys, not using existing ones. But there are scenarios where leveraging TypeScript to make your keys type-safe is still a benefit.&lt;/p&gt;
+&lt;p&gt;Depending on your setup there can be situations where catching incorrect or missing keys before they reach production can be achieved by making them type-safe, as opposed to using &lt;strong&gt;validation libraries&lt;/strong&gt; or &lt;strong&gt;linters&lt;/strong&gt;. Aside from that, a side-effect of type-safety is improved &lt;strong&gt;autocomplete/intellisense capabilities&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With that being said, one should also consider some limitations and issues that can arise from this approach. It requires to have the &lt;strong&gt;message files up to date&lt;/strong&gt;, meaning the keys and translations have to already exist in your locale files, otherwise TypeScript will keep complaining about non-existent keys.&lt;/p&gt;
+&lt;p&gt;In other words, if you create the &lt;strong&gt;message IDs&lt;/strong&gt; and &lt;strong&gt;default translations&lt;/strong&gt; in your code via i18n specific components (i.e. &lt;code&gt;FormatMessage&lt;/code&gt;) or functions (i.e. &lt;code&gt;formatMessage&lt;/code&gt; or &lt;code&gt;t&lt;/code&gt;), and then create the locale files via an extraction script based on that code, then the type-safe keys approach is suboptimal. This is where tools like linters or checkers running as a pre-commit hook or on the CI are preferable.&lt;/p&gt;
+&lt;p&gt;This write-up will go through the setup for two popular libraries in React-land: &lt;code&gt;react-i18next&lt;/code&gt; and &lt;code&gt;react-intl&lt;/code&gt;. As a side-note: if you have a specific library that could use TypeScript support, don&#39;t hesitate to let us know on &lt;a href=&quot;https://twitter.com/lingualdev&quot;&gt;Twitter&lt;/a&gt;, we might write a follow-up on the topic if there is enough interest.&lt;/p&gt;
+&lt;h2 id=&quot;making-your-translation-keys-type-safe&quot; tabindex=&quot;-1&quot;&gt;Making your translation keys type-safe &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The following sections are mainly for existing users of either &lt;code&gt;react-i18next&lt;/code&gt; or &lt;code&gt;react-intl&lt;/code&gt; as we will not talk about how to set up these libraries, but only focus on the actual setup to make translation keys type-safe.&lt;/p&gt;
+&lt;h2 id=&quot;type-safe-translation-keys-in-react-i18next&quot; tabindex=&quot;-1&quot;&gt;Type-safe translation keys in react-i18next &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first thing we need to do according to the &lt;a href=&quot;https://www.i18next.com/overview/typescript&quot;&gt;documentation&lt;/a&gt; is to add a &lt;code&gt;i18next.d.ts&lt;/code&gt; file, as we will need to augment the TypeScript definition:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;i18next&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ns1 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;locales/en/ns1.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ns2 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;locales/en/ns2.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;i18next&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CustomTypeOptions&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		defaultNS&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ns1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		resources&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			ns1&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; ns1&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+			ns2&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; ns2&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// ...&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Alternatively we can also create an &lt;code&gt;i18n.ts&lt;/code&gt; file to initialize &lt;code&gt;i18next&lt;/code&gt; and prepare the resources:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; i18n &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;i18next&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; initReactI18next &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react-i18next&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ns1 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./locales/en/ns1.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ns2 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./locales/en/ns2.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; defaultNS &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ns1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; resources &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	ns1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	ns2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+i18n&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;initReactI18next&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	debug&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	fallbackLng&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	defaultNS&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	resources&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can directly import &lt;code&gt;i18n.ts&lt;/code&gt; in our &lt;code&gt;i18-next.d.ts&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; defaultNS&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; resources &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./i18n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;i18next&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CustomTypeOptions&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		defaultNS&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; defaultNS&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		resources&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; resources&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that there is a &lt;a href=&quot;https://www.i18next.com/overview/typescript#custom-type-options&quot;&gt;list of available custom type options&lt;/a&gt; we can override under the &lt;code&gt;CustomTypeOptions&lt;/code&gt; in the newly created &lt;code&gt;i18next.d.ts&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;This change enables us now to use the &lt;code&gt;t&lt;/code&gt; function in a way, that we can only access keys that already exist in our internationalisation files:&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/pgYte229A8-801.avif 801w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/pgYte229A8-801.webp 801w&quot;&gt;&lt;img alt=&quot;i18next t function autocomplete&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/pgYte229A8-801.png&quot; width=&quot;801&quot; height=&quot;326&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;The same goes for the &lt;code&gt;&amp;lt;Trans&amp;gt;&lt;/code&gt; component, which now checks that the provided &lt;code&gt;i18nKey&lt;/code&gt; is an existing key and otherwise will error:&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/9CqME-uDDL-801.avif 801w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/9CqME-uDDL-801.webp 801w&quot;&gt;&lt;img alt=&quot;i18next trans component autocomplete&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/9CqME-uDDL-801.png&quot; width=&quot;801&quot; height=&quot;282&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;Also &lt;code&gt;useTranslation&lt;/code&gt; will only accept valid namespaces from here on out:&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/jrcaW4ccDI-800.avif 800w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/jrcaW4ccDI-800.webp 800w&quot;&gt;&lt;img alt=&quot;i18next namespace autocomplete&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/jrcaW4ccDI-800.png&quot; width=&quot;800&quot; height=&quot;287&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;Should you still run into some issues when trying to set up the TypeScript support, the &lt;a href=&quot;https://www.i18next.com/overview/typescript#troubleshooting&quot;&gt;documentation has a troubleshooting section&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;type-safe-translation-keys-in-react-intl&quot; tabindex=&quot;-1&quot;&gt;Type-safe translation keys in react-intl &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Adding support for typed message IDs in &lt;code&gt;react-intl&lt;/code&gt; can be achieved by following the &lt;a href=&quot;https://formatjs.io/docs/react-intl/#typing-message-ids-and-locale&quot;&gt;documentation&lt;/a&gt;.
+To change the standard &lt;code&gt;string&lt;/code&gt; type for message keys to a more restrictive type we need to override the global &lt;code&gt;FormatjsIntl&lt;/code&gt; namespace.
+We can create a file called &lt;code&gt;react-intl.d.ts&lt;/code&gt; and add the following code:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; messages&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;LOCALES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./i18n/messages&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; defaultMessages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; messages&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;LOCALES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ENGLISH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;declare&lt;/span&gt; global &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; FormatjsIntl &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Message&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			ids&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; defaultMessages&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are using &lt;code&gt;defaultMessages&lt;/code&gt; here, as we are interested in the existing keys in the default language. Technically any object containing messages that we can also pass to the &lt;code&gt;IntlProvider&lt;/code&gt; is valid.&lt;/p&gt;
+&lt;p&gt;By overriding the &lt;code&gt;FormatjsIntl&lt;/code&gt; namespace, we can leverage autocomplete/intellisense and error checking inside our codebase. This works for both the &lt;code&gt;&amp;lt;FormattedMessage&amp;gt;&lt;/code&gt; component as well as the &lt;code&gt;formatMessage&lt;/code&gt; function, which now only accept an &lt;code&gt;id&lt;/code&gt; property that also exists in the messages object.&lt;/p&gt;
+&lt;p&gt;We now have autocomplete for all existing messages:&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/V8zU_Xl9ez-801.avif 801w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/V8zU_Xl9ez-801.webp 801w&quot;&gt;&lt;img alt=&quot;react-intl autocomplete&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/V8zU_Xl9ez-801.png&quot; width=&quot;801&quot; height=&quot;401&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;TypeScript will complain if the message ID does not exist:&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://www.lingual.dev/img/FYiWyswYPi-802.avif 802w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://www.lingual.dev/img/FYiWyswYPi-802.webp 802w&quot;&gt;&lt;img alt=&quot;react-intl TypeScript error&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://www.lingual.dev/img/FYiWyswYPi-802.png&quot; width=&quot;802&quot; height=&quot;338&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;Summary &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Adding TypeScript for validating against incorrect or missing keys can be a useful strategy if your message keys are defined outside the React code and then referenced via an &lt;code&gt;id&lt;/code&gt; property. Not only does this enable capabilities like autocomplete, it also helps to catch non-existent or wrong key names before they land in production.&lt;/p&gt;
+&lt;p&gt;If your internationalisation workflow is based on creating the keys directly in the code and then extracting them from that code, using linters or checkers might be more useful. TypeScript will complain about invalid keys, but these keys might be extracted or updated in the message files at a different point in time, i.e. as a pre-commit hook.&lt;/p&gt;
+&lt;p&gt;If you have any questions or want to leave some feedback, you can find us on &lt;a href=&quot;https://twitter.com/lingualdev&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;links&quot; tabindex=&quot;-1&quot;&gt;Links &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://formatjs.io/docs/react-intl/#typing-message-ids-and-locale&quot;&gt;react-intl: typing message IDs and locale&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.i18next.com/overview/typescripts&quot;&gt;i18next: TypeScript&lt;/a&gt;&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Introducing i18n-check - Improving the i18n developer experience</title>

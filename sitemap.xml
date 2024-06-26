@@ -8,16 +8,36 @@
 	
 	<url>
 		<loc>https://www.lingual.dev/blog/</loc>
-		<lastmod>2024-06-20</lastmod>
+		<lastmod>2024-06-26</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://www.lingual.dev/</loc>
-		<lastmod>2024-06-20</lastmod>
+		<lastmod>2024-06-26</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://www.lingual.dev/tags/</loc>
-		<lastmod>2024-06-20</lastmod>
+		<lastmod>2024-06-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://www.lingual.dev/tags/react/</loc>
+		<lastmod>2024-06-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://www.lingual.dev/tags/i18n/</loc>
+		<lastmod>2024-06-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://www.lingual.dev/tags/typescript/</loc>
+		<lastmod>2024-06-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://www.lingual.dev/blog/making-your-translation-keys-type-safe-in-react-typescript/</loc>
+		<lastmod>2024-06-27</lastmod>
 	</url>
 </urlset>
