@@ -11,7 +11,7 @@ tags: ["react", "i18n", "typescript"]
 
 With **TypeScript** being the de-facto standard way to write **React** applications it only makes sense to expand the **type-safety** to our translations, specifically our translation keys.
 
-No matter if your are using one of the popular **i18n** libraries like [react-i18next](https://react.i18next.com/) or [react-intl](https://formatjs.io/docs/react-intl/#the-react-intl-package) or other internationalisation packages, you will probably want to explore how useful expanding type-checking to translation keys can be.
+No matter if you are using one of the popular **i18n** libraries like [react-i18next](https://react.i18next.com/) or [react-intl](https://formatjs.io/docs/react-intl/#the-react-intl-package) or other internationalisation packages, you will probably want to explore how useful expanding type-checking to translation keys can be.
 
 While most modern libraries already offer TypeScript support for setting up the library as well as interacting with the API, the translation keys themselves are often typed as a simple `string` type. This approach makes sense, as in most cases you will be adding new keys, not using existing ones. But there are scenarios where leveraging TypeScript to make your keys type-safe is still a benefit.
 
