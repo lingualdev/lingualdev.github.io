@@ -1,9 +1,8 @@
 ---
 title: Making your translation keys type-safe in React
 description:
-date: 2024-06-26
+date: 2024-06-27
 permalink: blog/making-your-translation-keys-type-safe-in-react-typescript/index.html
-draft: true
 tags: ["react", "i18n", "typescript"]
 ---
 
