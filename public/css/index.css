@@ -177,8 +177,7 @@ pre:not([class*="language-"]) {
 }
 
 code {
-	word-break: break-all;
-	padding: .2em .4em;
+	padding: 0.2em 0.4em;
 	margin: 0;
 	font-size: 85%;
 	white-space: break-spaces;
@@ -284,7 +283,6 @@ header {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	text-transform: capitalize;
 	font-style: italic;
 }
 
