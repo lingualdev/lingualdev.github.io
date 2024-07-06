@@ -4,12 +4,85 @@
 	<subtitle>Improving the i18n developer experience</subtitle>
 	<link href="https://www.lingual.dev/feed/feed.xml" rel="self"/>
 	<link href="https://www.lingual.dev/"/>
-	<updated>2024-06-27T00:00:00Z</updated>
+	<updated>2024-07-06T00:00:00Z</updated>
 	<id>https://www.lingual.dev/</id>
 	<author>
 		<name></name>
 		<email></email>
 	</author>
+	
+	<entry>
+		<title>An almost complete checklist for your i18n efforts Part 1</title>
+		<link href="https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html"/>
+		<updated>2024-07-06T00:00:00Z</updated>
+		<id>https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html</id>
+		<content type="html">&lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;Introduction &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;More often than not, we start to think about internationalization once &lt;strong&gt;the application is already in production&lt;/strong&gt;. The need for i18n could arise due to market expansion for example and thought and energy need to be invested in making the application multi language capable.
+This can be a challenging task and the potential for overseeing some aspects is real.
+We want to avoid scenarios that render our internationalization efforts ineffective. See the following as a &lt;strong&gt;possible checklist&lt;/strong&gt; or a starting point to get an overview of what you might want to consider before starting any initiative.&lt;/p&gt;
+&lt;p&gt;This is &lt;strong&gt;not meant to be a complete checklist&lt;/strong&gt; obviously, but rather a basic entry point in what you might want to give some thought on and extend with your specific situation (i.e. programming language, framework, domain specific boundaries etc.)&lt;/p&gt;
+&lt;h3 id=&quot;using-an-i18n-library&quot; tabindex=&quot;-1&quot;&gt;Using an i18n library &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Localization is more than just simply replacing a couple of strings, it requires us to think about aspects like date and time, numbers, pluralization, grammar and many more locale specific requirements. We want to customize all aspects of an application to the local market we are targeting, so &lt;strong&gt;it&#39;s not just replacing strings&lt;/strong&gt;.
+Almost every modern language and/or framework either offers built-in i18n support or there is a library that is optimized for said language/framework.&lt;/p&gt;
+&lt;p&gt;Research possible alternatives and ensure that the selected library supports pluralization and number/date/time formatting. For example in &lt;code&gt;react&lt;/code&gt; the two most popular libraries, &lt;code&gt;react-i18next&lt;/code&gt; and &lt;code&gt;react-intl&lt;/code&gt;, support most i18n aspects by default.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Don&#39;t build your own i18n library, use existing, supported and tested solutions.
+Let the library take care of currencies, date/time, numbers and pluralizations.&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;defining-a-localization-strategy&quot; tabindex=&quot;-1&quot;&gt;Defining a localization strategy &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Decide if you want to define message ids and default translations in code first and then extract these keys into locale files or if you want to always update the locale files first and then update the codebase depending on these locale files.&lt;/p&gt;
+&lt;p&gt;There is a current trend to also use &lt;strong&gt;TypeScript&lt;/strong&gt; for the message id validation, where the compiler will complain if you use a non-existent message id and also leverage autocomplete/intelliSense when filling out the ids. The second approach would makes this flow possible.&lt;/p&gt;
+&lt;p&gt;On a side-note it might not be that important to use TypeScript for validating message id correctness as there are linters and checkers that can help ensuring the codebase and the locale files are in sync.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Decide if you want to apply i18n in code first or locale files first.
+Define if the keys should be extracted from the codebase or if the locales files are updated first and then the keys applied to the codebase.&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;design&quot; tabindex=&quot;-1&quot;&gt;Design &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Although the design aspect of an application can feel detached from the translation process, they are actually more intertwined than we want to believe. Just think about the length of some word in English vs another language. Some languages use more characters for the same word.
+Let&#39;s take the word &lt;code&gt;skating&lt;/code&gt; in English, it translates to &lt;code&gt;Schlittschuhlaufen&lt;/code&gt; in German. We can do the same with sentences that we translate from English to German or another language, which can significantly vary in length.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The length of a sentence or string can vary&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means we should consider to leave some room for the strings to expand depending on the selected language. The space can be calculated dynamically and expand on demand or we can leave some fixed space, that can be filled out.
+No matter what strategy we use, we should keep the varying string length in mind when designing the user interface. Taking this approach prevents strings from suddenly overlapping each other and other issues that can make your app feel broken, we want to avoid that.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Keep in mind that strings can vary in length.
+Depending on the locale when designing the user interface!&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;pluralization&quot; tabindex=&quot;-1&quot;&gt;Pluralization &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At first you might think that pluralization is defining a &lt;strong&gt;singular&lt;/strong&gt; and &lt;strong&gt;plural&lt;/strong&gt; form. This works for the English language. But if you take a closer look at the &lt;a href=&quot;https://cldr.unicode.org/index/cldr-spec/plural-rules&quot;&gt;The Unicode Common Locale Data Repository (CLDR) &lt;/a&gt; plural rules, there are six defined forms:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;zero&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;one (singular)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;two (dual)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;few (paucal)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;many&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;other (required—general plural form)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This means we can&#39;t just do a simple check for singular and plural but need to accustom to the locale. Most i18n libraries account for this and can handle pluralization correctly.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Use an internationalization library to handle pluralization!
+Avoid hardcoding any checks to show singular or plural forms.&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;currencies-units-time-date-and-number-formatting&quot; tabindex=&quot;-1&quot;&gt;Currencies, units, time, date and number formatting &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;There is a lot more than simple string translations that we need to consider when localzing an application. Just think about aspects like &lt;strong&gt;time and date formatting&lt;/strong&gt;. What we want is to ensure that our &lt;strong&gt;i18n efforts reflect the selected end user locale&lt;/strong&gt;.
+The most common approach is to avoid codifying any numbers, dates, time etc. and rather use a library to do that conversion for us by for example passing date and time in ISO format. Commonly you will find libraries for your language or framework that offer functionalities or components to do the heavyweight lifting.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Use an internationalization library to handle any units, time/dates, numbers or currencies formatting!
+Avoid hardcoding units, time/dates, numbers or currencies.&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;ensure-context&quot; tabindex=&quot;-1&quot;&gt;Ensure context &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;While as a developer you might have enough context in regards to a translated string, this might not be the case for an external translator or anyone without access to the code in general.
+&lt;strong&gt;The same string can have a different translation depending on the context&lt;/strong&gt;. We want keep this in mind and not lose the information once the translation is decoupled from the code base.
+Adding context in the resource file can help a translator to understand where the translation is happening in the user interface. Context can be provided via using meta information or screenshots f.e.
+Depending on the message format, there are defined ways to leave meta information associated with a message id.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Add context to your translation keys in the resource files!
+This ensures that context specific information is not lost during the developer/translator handover.&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;outro&quot; tabindex=&quot;-1&quot;&gt;Outro &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In part two we will expand the checklist and talk about topics like &lt;strong&gt;right-to-left languages&lt;/strong&gt;, &lt;strong&gt;device sizes&lt;/strong&gt;, &lt;strong&gt;testing and validating your localization&lt;/strong&gt;, &lt;strong&gt;unicode&lt;/strong&gt; and &lt;strong&gt;conditional text and grammar&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions or want to leave some feedback, you can find us on &lt;a href=&quot;https://twitter.com/lingualdev&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Making your translation keys type-safe in React</title>

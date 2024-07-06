@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>An almost complete checklist for your i18n efforts Part 1</title>
+		<meta name="description" content="An extensive list of topics to consider when starting with i18n">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lingual">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Lingual">
+		
+		<style>/**
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	font-family: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #2E3440;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #636f88;
+}
+
+.token.punctuation {
+	color: #81A1C1;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #81A1C1;
+}
+
+.token.number {
+	color: #B48EAD;
+}
+
+.token.boolean {
+	color: #81A1C1;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #A3BE8C;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #81A1C1;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #88C0D0;
+}
+
+.token.keyword {
+	color: #81A1C1;
+}
+
+.token.regex,
+.token.important {
+	color: #EBCB8B;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+* { box-sizing: border-box; }
+/* Defaults */
+
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "InterVariable", sans-serif;
+		font-optical-sizing: auto;
+	}
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: InterVariable;
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
+}
+
+:root {
+	--font-family: "InterVariable", -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
+		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
+		Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #c0c0c0;
+	--color-gray-90: #27272a;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #0284c7;
+	--text-color-link-active: #0369a1;
+	--text-color-link-visited: #0284c7;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #c0c0c0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #0284c7;
+		--text-color-link-active: #0369a1;
+		--text-color-link-visited: #0284c7;
+
+		--background-color: #15202b;
+	}
+}
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+	padding-bottom: 64px;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	max-width: 54em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+}
+
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+header:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.links-nextprev {
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+
+pre:not([class*="language-"]) {
+	margin: 0.5em 0;
+	line-height: 1.375;
+	/* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+}
+
+code {
+	padding: 0.2em 0.4em;
+	margin: 0;
+	font-size: 85%;
+	white-space: break-spaces;
+	border-radius: 6px;
+	background: #eee;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em 0.5em;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1em;
+}
+
+.home-link {
+	font-size: 1em;
+	/* 16px /16 */
+	font-weight: 500;
+	margin-right: 2em;
+	color: var(--text-color) !important;
+}
+
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em;
+	/* 13px /16 */
+	color: var(--color-gray-90);
+}
+
+.postlist-date {
+	word-spacing: -0.5px;
+}
+
+.postlist-link {
+	font-size: 1.1875em;
+	/* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: 0.25em;
+	padding-right: 0.5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-style: italic;
+}
+
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: 0.1em;
+}
+
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+}
+
+h2 {
+	margin-top: 1.5em;
+}
+
+/* https://www.zachleat.com/web/fluid-images/ */
+
+img {
+	max-width: 100%;
+}
+
+img[width][height] {
+	height: auto;
+	/* Preserve aspect ratio */
+	border-radius: 0.3em;
+}
+
+/* Let SVG scale without boundaries */
+img[src$=".svg"] {
+	width: 100%;
+	height: auto;
+	max-width: none;
+}
+
+/* Default page */
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 48px;
+	font-size: 20px;
+	gap: 16px;
+}
+
+.main img[src$=".svg"] {
+	width: 48px;
+	height: auto;
+	max-width: none;
+}
+
+.logo-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1000px;
+	background: #efefef;
+	padding: 16px;
+}
+
+.nav-logo {
+	display: flex;
+	align-items: center;
+	padding-right: 8px;
+}
+
+.nav-logo img {
+	width: 24px;
+	height: auto;
+}</style>
+		<link rel="icon" href="/img/lingual.svg" type="image/svg+xml">
+	</head>
+	<body>
+        
+<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+<header>
+
+	<div class="nav-logo"><img src="/img/lingual.svg"></div>
+	<a href="/" class="home-link">Lingual</a>
+	<nav>
+		<h2 class="visually-hidden">Top level navigation menu</h2>
+		<!--
+		<ul class="nav">
+			<li class="nav-item"><a href="/">Home</a></li>
+			<li class="nav-item"><a href="/blog/">Archive</a></li>
+		</ul>
+		-->
+	</nav>
+</header>
+
+<main id="skip">
+	
+<h1>An almost complete checklist for your i18n efforts Part 1</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2024-07-06">06 July 2024</time></li>
+	<li><a href="/tags/i18n/" class="post-tag">i18n</a>, </li>
+	<li><a href="/tags/internationalization/" class="post-tag">internationalization</a></li>
+</ul>
+
+<h2 id="introduction" tabindex="-1">Introduction <a class="header-anchor" href="#introduction">#</a></h2>
+<p>More often than not, we start to think about internationalization once <strong>the application is already in production</strong>. The need for i18n could arise due to market expansion for example and thought and energy need to be invested in making the application multi language capable.
+This can be a challenging task and the potential for overseeing some aspects is real.
+We want to avoid scenarios that render our internationalization efforts ineffective. See the following as a <strong>possible checklist</strong> or a starting point to get an overview of what you might want to consider before starting any initiative.</p>
+<p>This is <strong>not meant to be a complete checklist</strong> obviously, but rather a basic entry point in what you might want to give some thought on and extend with your specific situation (i.e. programming language, framework, domain specific boundaries etc.)</p>
+<h3 id="using-an-i18n-library" tabindex="-1">Using an i18n library <a class="header-anchor" href="#using-an-i18n-library">#</a></h3>
+<p>Localization is more than just simply replacing a couple of strings, it requires us to think about aspects like date and time, numbers, pluralization, grammar and many more locale specific requirements. We want to customize all aspects of an application to the local market we are targeting, so <strong>it's not just replacing strings</strong>.
+Almost every modern language and/or framework either offers built-in i18n support or there is a library that is optimized for said language/framework.</p>
+<p>Research possible alternatives and ensure that the selected library supports pluralization and number/date/time formatting. For example in <code>react</code> the two most popular libraries, <code>react-i18next</code> and <code>react-intl</code>, support most i18n aspects by default.</p>
+<pre class="language-txt" tabindex="0"><code class="language-txt">Tip: Don't build your own i18n library, use existing, supported and tested solutions.
+Let the library take care of currencies, date/time, numbers and pluralizations.</code></pre>
+<h3 id="defining-a-localization-strategy" tabindex="-1">Defining a localization strategy <a class="header-anchor" href="#defining-a-localization-strategy">#</a></h3>
+<p>Decide if you want to define message ids and default translations in code first and then extract these keys into locale files or if you want to always update the locale files first and then update the codebase depending on these locale files.</p>
+<p>There is a current trend to also use <strong>TypeScript</strong> for the message id validation, where the compiler will complain if you use a non-existent message id and also leverage autocomplete/intelliSense when filling out the ids. The second approach would makes this flow possible.</p>
+<p>On a side-note it might not be that important to use TypeScript for validating message id correctness as there are linters and checkers that can help ensuring the codebase and the locale files are in sync.</p>
+<pre class="language-txt" tabindex="0"><code class="language-txt">Tip: Decide if you want to apply i18n in code first or locale files first.
+Define if the keys should be extracted from the codebase or if the locales files are updated first and then the keys applied to the codebase.</code></pre>
+<h3 id="design" tabindex="-1">Design <a class="header-anchor" href="#design">#</a></h3>
+<p>Although the design aspect of an application can feel detached from the translation process, they are actually more intertwined than we want to believe. Just think about the length of some word in English vs another language. Some languages use more characters for the same word.
+Let's take the word <code>skating</code> in English, it translates to <code>Schlittschuhlaufen</code> in German. We can do the same with sentences that we translate from English to German or another language, which can significantly vary in length.</p>
+<p><strong>The length of a sentence or string can vary</strong>.</p>
+<p>This means we should consider to leave some room for the strings to expand depending on the selected language. The space can be calculated dynamically and expand on demand or we can leave some fixed space, that can be filled out.
+No matter what strategy we use, we should keep the varying string length in mind when designing the user interface. Taking this approach prevents strings from suddenly overlapping each other and other issues that can make your app feel broken, we want to avoid that.</p>
+<pre class="language-txt" tabindex="0"><code class="language-txt">Tip: Keep in mind that strings can vary in length.
+Depending on the locale when designing the user interface!</code></pre>
+<h3 id="pluralization" tabindex="-1">Pluralization <a class="header-anchor" href="#pluralization">#</a></h3>
+<p>At first you might think that pluralization is defining a <strong>singular</strong> and <strong>plural</strong> form. This works for the English language. But if you take a closer look at the <a href="https://cldr.unicode.org/index/cldr-spec/plural-rules">The Unicode Common Locale Data Repository (CLDR) </a> plural rules, there are six defined forms:</p>
+<ul>
+<li>
+<p>zero</p>
+</li>
+<li>
+<p>one (singular)</p>
+</li>
+<li>
+<p>two (dual)</p>
+</li>
+<li>
+<p>few (paucal)</p>
+</li>
+<li>
+<p>many</p>
+</li>
+<li>
+<p>other (required—general plural form)</p>
+</li>
+</ul>
+<p>This means we can't just do a simple check for singular and plural but need to accustom to the locale. Most i18n libraries account for this and can handle pluralization correctly.</p>
+<pre class="language-txt" tabindex="0"><code class="language-txt">Tip: Use an internationalization library to handle pluralization!
+Avoid hardcoding any checks to show singular or plural forms.</code></pre>
+<h3 id="currencies-units-time-date-and-number-formatting" tabindex="-1">Currencies, units, time, date and number formatting <a class="header-anchor" href="#currencies-units-time-date-and-number-formatting">#</a></h3>
+<p>There is a lot more than simple string translations that we need to consider when localzing an application. Just think about aspects like <strong>time and date formatting</strong>. What we want is to ensure that our <strong>i18n efforts reflect the selected end user locale</strong>.
+The most common approach is to avoid codifying any numbers, dates, time etc. and rather use a library to do that conversion for us by for example passing date and time in ISO format. Commonly you will find libraries for your language or framework that offer functionalities or components to do the heavyweight lifting.</p>
+<pre class="language-txt" tabindex="0"><code class="language-txt">Tip: Use an internationalization library to handle any units, time/dates, numbers or currencies formatting!
+Avoid hardcoding units, time/dates, numbers or currencies.</code></pre>
+<h3 id="ensure-context" tabindex="-1">Ensure context <a class="header-anchor" href="#ensure-context">#</a></h3>
+<p>While as a developer you might have enough context in regards to a translated string, this might not be the case for an external translator or anyone without access to the code in general.
+<strong>The same string can have a different translation depending on the context</strong>. We want keep this in mind and not lose the information once the translation is decoupled from the code base.
+Adding context in the resource file can help a translator to understand where the translation is happening in the user interface. Context can be provided via using meta information or screenshots f.e.
+Depending on the message format, there are defined ways to leave meta information associated with a message id.</p>
+<pre class="language-txt" tabindex="0"><code class="language-txt">Tip: Add context to your translation keys in the resource files!
+This ensures that context specific information is not lost during the developer/translator handover.</code></pre>
+<h2 id="outro" tabindex="-1">Outro <a class="header-anchor" href="#outro">#</a></h2>
+<p>In part two we will expand the checklist and talk about topics like <strong>right-to-left languages</strong>, <strong>device sizes</strong>, <strong>testing and validating your localization</strong>, <strong>unicode</strong> and <strong>conditional text and grammar</strong>.</p>
+<p>If you have any questions or want to leave some feedback, you can find us on <a href="https://twitter.com/lingualdev">Twitter</a>.</p>
+
+<ul class="links-nextprev"><li>Previous: <a href="/blog/making-your-translation-keys-type-safe-in-react-typescript/">Making your translation keys type-safe in React</a></li>
+</ul>
+
+</main>
+
+<footer></footer>
+
+<!-- This page `/blog/checklist-for-your-i18n-efforts-part-1.html` was built on 2024-07-06T10:47:43.728Z -->
+
+	</body>
+</html>
