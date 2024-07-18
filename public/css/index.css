@@ -365,6 +365,22 @@ img[src$=".svg"] {
 	gap: 16px;
 }
 
+.blogList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.blogList .postlist-item {
+	text-align: center;
+	justify-content: center;
+
+	&:before {
+		display: none;
+	}
+}
+
 .main img[src$=".svg"] {
 	width: 48px;
 	height: auto;
