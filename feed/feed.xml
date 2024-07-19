@@ -4,12 +4,82 @@
 	<subtitle>Improving the i18n developer experience</subtitle>
 	<link href="https://www.lingual.dev/feed/feed.xml" rel="self"/>
 	<link href="https://www.lingual.dev/"/>
-	<updated>2024-07-06T00:00:00Z</updated>
+	<updated>2024-07-19T00:00:00Z</updated>
 	<id>https://www.lingual.dev/</id>
 	<author>
 		<name></name>
 		<email></email>
 	</author>
+	
+	<entry>
+		<title>An almost complete checklist for your i18n efforts Part 2</title>
+		<link href="https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html"/>
+		<updated>2024-07-19T00:00:00Z</updated>
+		<id>https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html</id>
+		<content type="html">&lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;Introduction &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the second part of the checklist to support your 18n efforts, you can also checkout &lt;a href=&quot;https://lingual.dev/blog/checklist-for-your-i18n-efforts-part-1.html&quot;&gt;part 1 here&lt;/a&gt; in case you haven&#39;t read it.&lt;/p&gt;
+&lt;p&gt;The first part focused on a wide range of topics including choosing the right library, providing context, design aspects, pluralization and more. The second part will continue covering more aspects like &lt;strong&gt;right-to-left languages&lt;/strong&gt;, &lt;strong&gt;testing and validating your localization&lt;/strong&gt;, &lt;strong&gt;unicode&lt;/strong&gt;, &lt;strong&gt;device sizes&lt;/strong&gt; and &lt;strong&gt;conditional text and grammar&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It&#39;s always a good idea to consider a wide range of angles when approaching internalionalization as it is more than just simple string translations.&lt;/p&gt;
+&lt;h2 id=&quot;testing-and-validating-your-localization&quot; tabindex=&quot;-1&quot;&gt;Testing and validating your localization &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To ensure that your application does not break when working with different languages, there are a couple of possible approaches you can choose from.&lt;/p&gt;
+&lt;p&gt;If you don&#39;t want to test specific regions or translations, there is an option to &lt;strong&gt;test different text lengths&lt;/strong&gt; by randomizing the text. This can help to ensure that different word lengths do not break the layout.&lt;/p&gt;
+&lt;p&gt;For a more qualitative approach, you can have native speakers &lt;strong&gt;manually test the application&lt;/strong&gt; and collect the feedback based on these tests. This a more intensive approach which also can&#39;t be automated, but can provide very valuable and deep insights when rolling out the application to a new region.&lt;/p&gt;
+&lt;p&gt;The third approach is to use &lt;strong&gt;checkers and linters&lt;/strong&gt;. These can help to identify missing keys in specific translations files. Further more some checkers can also identify broken translations. You can run these linters/checkers locally while developing features and/or run them on the CI and get notfied when something is broken. In general these tools can be very helpful to understand the state of the translations when you are not using any translation management system.&lt;/p&gt;
+&lt;p&gt;Finally you can also run automated tests against specific languages in your app, these tests can range from UI tests that verify specific strings exist to more advanced approaches like visual regression testing.&lt;/p&gt;
+&lt;p&gt;You can also checkout &lt;a href=&quot;https://github.com/lingualdev/i18n-check&quot;&gt;i18n-check&lt;/a&gt; if you are using &lt;code&gt;react-intl&lt;/code&gt; or &lt;code&gt;react-i18next&lt;/code&gt; to verify your translations.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: It&#39;s a good idea to research what tools are available for your programming
+lanuage and/or framework first and then mix different approaches and see what
+yields the best results.&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;right-to-left-languages&quot; tabindex=&quot;-1&quot;&gt;Right-to-left languages &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are cases where we might need to &lt;strong&gt;support right-to-left languages&lt;/strong&gt;, which means that we not only need to consider that the direction of the text changes but also that user interface elements might have to be adapted and made suitable as well.&lt;/p&gt;
+&lt;p&gt;So right-to-left languages need to be thought about on the user interface level not only on the actual translation level. This also implies to think about the required adaptions needed in regards to the UI elements (i.e. buttons, sliders etc.) in the design phase. Additionally these design and layout adaptions should also be ensured through UI testing and other quality assurance tools.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Consider right-to-left languages, as these not only need to be translated
+but also might require visual adaptions to the user interface!&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;unicode&quot; tabindex=&quot;-1&quot;&gt;Unicode &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This tip is a short one, always use &lt;strong&gt;Unicode (UTF-8)&lt;/strong&gt; encoding to ensure that your translations are displayed correctly independent of the selected locale.
+We will be writing a more detailed blog post on Unicode soon.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Use Unicode (UTF-8) encoding!&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;device-sizes&quot; tabindex=&quot;-1&quot;&gt;Device sizes &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Depending on the range of devices we want to support, it can be a good strategy to verify how the word length and device size fit together. Do specific sentences break the user interface given a specific width or height? We need to ensure that the UI remains consistent.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Consider device sizes and how these might affect the translations.
+Check if word length in a specific locale breaks the layout.
+Try to adapt the user interface to the different device sizes you want to support.&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;conditional-text-and-grammar&quot; tabindex=&quot;-1&quot;&gt;Conditional text and grammar &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One common mistake is to assume that the structure of a sentence can be replicated over different locales. This would imply that we can break up a sentence into multiiple parts and concatenate them in the code.&lt;/p&gt;
+&lt;p&gt;This is problematic, as first we can not guarantee that the selected target language follows the implied order defined in the code and second, it&#39;s very hard for the translator to understand and control the sentence.&lt;/p&gt;
+&lt;p&gt;Let&#39;s see an example to get a better understanding.&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Welcome,&quot;&lt;/span&gt;  name &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;!&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above example would break the string into three parts and assume the structure will work for all locales&lt;/p&gt;
+&lt;p&gt;A better way is to &lt;strong&gt;use full sentences and work with placeholders&lt;/strong&gt;. The advantage is that the translator now has a full understanding of the sentence and can change the ordering of the words themselves. This approach brings back the flexibility needed to adapt to specific locale requirements.&lt;/p&gt;
+&lt;p&gt;So the above example would be refactored to a single sentence with a placholder &lt;code&gt;name&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Welcome, {name}!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now the translator can adapt the structure as needed when translating the source string into a target locale. Also, if there are placeholders in place, more information about the placeholder should be provided the translator. This helps to gain an understanding for what the placeholder stands and how to incorporate it into the target language.&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Tip: Try to keep full sentences intact and only break them up if there is a good reason.
+Additionally use placeholders for things that don&#39;t rely on pluralization, gender or number
+and might change due to the aforementioned!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;more-aspects-to-consider&quot; tabindex=&quot;-1&quot;&gt;More aspects to consider &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are a lot more topics to consider when planning to internationalize your app or website, for example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Consider to separte text from images&lt;/strong&gt;: simplifies the translation process when updating the text. Otherwise if the image contains text, that text will be needed to be updated to the target locale(s).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Selecting a translation management system&lt;/strong&gt;: there might be a need to use a management system to handle the translations. Depending on the situation and complexity of your setup, these tools can range from only updating the translations to handling complex workflows with multiple roles (translators, admins etc.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Using machine translations&lt;/strong&gt;: These can help to get some basic translations in place, that can be refined in a further step.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Accessibility&lt;/strong&gt;: The topic is bigger than i18n, but also good to consider and keep in mind when following an internationalization strategy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These were some further examples to highlight the complexity of the i18n topic.&lt;/p&gt;
+&lt;h2 id=&quot;outro&quot; tabindex=&quot;-1&quot;&gt;Outro &lt;a class=&quot;header-anchor&quot; href=&quot;https://www.lingual.dev/blog/checklist-for-your-i18n-efforts-part-2.html&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;That was the second and final part of our &lt;strong&gt;two part checklist series&lt;/strong&gt;. In general we should have a better understanding and overview about what to consider when planning to introduce i18n into an application.&lt;/p&gt;
+&lt;p&gt;If you have any questions or want to leave some feedback, you can find us on &lt;a href=&quot;https://twitter.com/lingualdev&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>An almost complete checklist for your i18n efforts Part 1</title>
