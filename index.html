@@ -8,7 +8,8 @@
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lingual">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Lingual">
 		
-		<style>* { box-sizing: border-box; }
+		<style>.postlist { counter-reset: start-from 4 }
+* { box-sizing: border-box; }
 /* Defaults */
 
 @supports (font-variation-settings: normal) {
@@ -297,7 +298,7 @@ header {
 	font-style: italic;
 }
 
-.postlist-item > .post-tag {
+.postlist-item>.post-tag {
 	align-self: center;
 }
 
@@ -334,11 +335,11 @@ a[href].header-anchor:hover {
 }
 
 a[href].header-anchor:focus,
-:hover > a[href].header-anchor {
+:hover>a[href].header-anchor {
 	color: #aaa;
 }
 
-h2 + .header-anchor {
+h2+.header-anchor {
 	font-size: 1.5em;
 }
 
@@ -405,11 +406,41 @@ img[src$=".svg"] {
 		<script defer src="https://cloud.umami.is/script.js" data-website-id="6f468da0-3830-4dd5-8f65-3c4fcb371390"></script>
 	</head>
 	<body>
-        
-<div class="main">
-  <div class="logo-wrapper"><img class="main-logo" src="img/lingual.svg" alt="Lingual logo" /></div>
-  <div>Lingual</div>
-</div>
+        <header>
+<div class="nav-logo"><img src="/img/lingual.svg"></div>
+<a href="/" class="home-link">Lingual</a>
+</header>
+<main>
+  
+  
+  <h2>Latest Posts</h2>
+
+  
+  
+  
+<ol reversed class="postlist">
+
+	<li class="postlist-item">
+		<a href="/blog/checklist-for-your-i18n-efforts-part-1.html" class="postlist-link">An almost complete checklist for your i18n efforts Part 1</a>
+		<time class="postlist-date" datetime="2024-07-06">July 2024</time>
+	</li>
+
+	<li class="postlist-item">
+		<a href="/blog/making-your-translation-keys-type-safe-in-react-typescript/" class="postlist-link">Making your translation keys type-safe in React</a>
+		<time class="postlist-date" datetime="2024-06-27">June 2024</time>
+	</li>
+
+	<li class="postlist-item">
+		<a href="/blog/introducing-i18n-check/" class="postlist-link">Introducing i18n-check - Improving the i18n developer experience</a>
+		<time class="postlist-date" datetime="2024-06-18">June 2024</time>
+	</li>
+
+</ol>
+
+
+  
+  
+</main>
 
 	</body>
 </html>
