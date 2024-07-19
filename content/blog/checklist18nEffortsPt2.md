@@ -13,7 +13,7 @@ This is the second part of the checklist to support your 18n efforts, you can al
 
 The first part focused on a wide range of topics including choosing the right library, providing context, design aspects, pluralization and more. The second part will continue covering more aspects like **right-to-left languages**, **testing and validating your localization**, **unicode**, **device sizes** and **conditional text and grammar**.
 
-It's always a good idea to consider a wide range of angles when approaching internalionalization as it is always more than just simple string translations.
+It's always a good idea to consider a wide range of angles when approaching internalionalization as it is more than just simple string translations.
 
 ## Testing and validating your localization
 
@@ -42,7 +42,8 @@ There are cases where we might need to **support right-to-left languages**, whic
 So right-to-left languages need to be thought about on the user interface level not only on the actual translation level. This also implies to think about the required adaptions needed in regards to the UI elements (i.e. buttons, sliders etc.) in the design phase. Additionally these design and layout adaptions should also be ensured through UI testing and other quality assurance tools.
 
 ```txt
-Tip: Consider right-to-left languages, as these not only need to be translated but also might require visual adaptions to the user interface!
+Tip: Consider right-to-left languages, as these not only need to be translated
+but also might require visual adaptions to the user interface!
 ```
 
 ## Unicode
@@ -97,9 +98,9 @@ and might change due to the aforementioned!
 
 ## More aspects to consider
 
-There are a lot more topics to consider when planing into internationalize your app or website, for example:
+There are a lot more topics to consider when planning to internationalize your app or website, for example:
 
-- **Consider to separte text from images**: simplifies the translation process when updating the text. Otherwise if the image contains text, it will need to updated to the target locale(s).
+- **Consider to separte text from images**: simplifies the translation process when updating the text. Otherwise if the image contains text, that text will be needed to be updated to the target locale(s).
 
 - **Selecting a translation management system**: there might be a need to use a management system to handle the translations. Depending on the situation and complexity of your setup, these tools can range from only updating the translations to handling complex workflows with multiple roles (translators, admins etc.)
 
@@ -111,6 +112,6 @@ These were some further examples to highlight the complexity of the i18n topic.
 
 ## Outro
 
-This was the second and final part of our **two part checklist series**. In general we should have a better understanding and overview about what to consider when planning to introduce i18n into an application.
+That was the second and final part of our **two part checklist series**. In general we should have a better understanding and overview about what to consider when planning to introduce i18n into an application.
 
 If you have any questions or want to leave some feedback, you can find us on [Twitter](https://twitter.com/lingualdev).

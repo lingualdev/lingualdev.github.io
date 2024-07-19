@@ -286,7 +286,7 @@ header {
 	font-style: italic;
 }
 
-.postlist-item > .post-tag {
+.postlist-item>.post-tag {
 	align-self: center;
 }
 
@@ -323,11 +323,11 @@ a[href].header-anchor:hover {
 }
 
 a[href].header-anchor:focus,
-:hover > a[href].header-anchor {
+:hover>a[href].header-anchor {
 	color: #aaa;
 }
 
-h2 + .header-anchor {
+h2+.header-anchor {
 	font-size: 1.5em;
 }
 
@@ -363,22 +363,6 @@ img[src$=".svg"] {
 	padding: 48px;
 	font-size: 20px;
 	gap: 16px;
-}
-
-.blogList {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.blogList .postlist-item {
-	text-align: center;
-	justify-content: center;
-
-	&:before {
-		display: none;
-	}
 }
 
 .main img[src$=".svg"] {
