@@ -1,7 +1,7 @@
 
 [[menus.main]]
 name = 'Archive'
-pageRef = '/posts'
+pageRef = '/blog'
 weight = 10
 
 # [[menus.main]]
@@ -15,6 +15,6 @@ weight = 10
 # weight = 30
 
 [module]
-  [module.hugoVersion]
-    extended = false
-    min = "0.116.0"
+[module.hugoVersion]
+extended = false
+min = "0.116.0"

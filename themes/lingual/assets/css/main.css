@@ -9,3 +9,20 @@ body {
 main a {
   @apply text-zinc-900 font-medium underline hover:text-sky-500;
 }
+
+.standard-prose {
+  @apply prose lg:prose-lg
+  prose-img:rounded-md
+prose-code:bg-stone-200
+  prose-code:px-1
+  prose-code:py-0.5
+  prose-code:before:content-none
+  prose-code:after:content-none
+  prose-code:rounded-sm
+  prose-code:text-sm
+  prose-code:font-normal;
+}
+
+.highlight pre {
+  @apply overflow-auto rounded-md p-4;
+}

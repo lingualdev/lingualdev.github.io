@@ -1,11 +1,12 @@
+<div class="w-20 mx-auto border-b-2 border-stone-200 mb-0.5"></div>
 <div
-  class="bg-zinc-100 px-8 pb-4 pt-16 text-sm text-slate-500 flex items-center justify-between"
+  class="bg-stone-100 px-8 pb-4 pt-16 text-xs sm:text-sm text-slate-500 flex items-center justify-between"
 >
   <p>&copy; {{ now.Year }} lingual.dev</p>
 
-  <ul class="flex gap-4">
+  <ul class="flex gap-2 sm:gap-4">
     {{ range first 4 .Site.Taxonomies.tags.ByCount }}
-    <li>
+    <li class="last:hidden sm:last:block">
       <a href="{{ .Page.RelPermalink }}" class="hover:underline">{{ .Name }}</a>
     </li>
     {{ end }}

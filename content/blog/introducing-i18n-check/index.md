@@ -103,7 +103,7 @@ yarn i18n:check -t locales -s locales/en-en.json
 
 In the above scenario the `i18n-check` will compare the `fr-fr.json` and `it-it.json` file against the `en-en.json` file and check for any missing or broken keys. Running the above command might return the following result:
 
-{% image "./img/lingual-i18n-check-example-1.png", "lingual-i18n-check example 1" %}
+![Example 1](lingual-i18n-check-example-1.png)
 
 ```bash
 i18n translations checker
@@ -131,7 +131,7 @@ Done in 0.01s.
 
 You can also use the `-r` or `--reporter` option to see a summary of the check instead of single keys, this is especially useful if you do not want to list all the keys:
 
-{% image "./img/lingual-i18n-check-example-2.png", "lingual-i18n-check example 2" %}
+![Example 2](lingual-i18n-check-example-2.png)
 
 ```bash
 i18n translations checker

@@ -1,10 +1,12 @@
 {{ define "main" }}
 
-<h1>Latest Articles</h1>
+<div class="standard-prose">
+  <h1>Latest Articles</h1>
+</div>
 
-<ul class="list-none p-0 m-0">
+<ul>
   {{ range first 3 site.RegularPages }}
-  <li class="m-0 p-0">
+  <li class="standard-prose">
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
   </li>

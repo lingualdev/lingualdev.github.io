@@ -1,12 +1,13 @@
 {{ define "main" }}
 
-<h1>{{ .Title }}</h1>
+<div class="standard-prose">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+</div>
 
-<section>{{ .Content }}</section>
-
-<ul class="list-none p-0 m-0">
+<ul>
   {{ range .Pages }}
-  <li class="m-0 p-0">
+  <li class="standard-prose">
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
   </li>
