@@ -20,7 +20,11 @@ prose-code:bg-stone-200
   prose-code:after:content-none
   prose-code:rounded-sm
   prose-code:text-sm
-  prose-code:font-normal;
+  prose-code:font-normal
+  prose-blockquote:text-slate-500
+  prose-blockquote:bg-zinc-100
+  [&_p]:prose-blockquote:my-1
+  prose-blockquote:py-2;
 }
 
 .highlight {
