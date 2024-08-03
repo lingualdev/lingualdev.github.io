@@ -11,7 +11,7 @@ main a {
 }
 
 .standard-prose {
-  @apply prose lg:prose-lg
+  @apply prose lg:prose-lg mx-auto
   prose-img:rounded-md
 prose-code:bg-stone-200
   prose-code:px-1
@@ -23,6 +23,9 @@ prose-code:bg-stone-200
   prose-code:font-normal;
 }
 
+.highlight {
+  @apply overflow-hidden;
+}
 .highlight pre {
   @apply overflow-auto rounded-md p-4;
 }
