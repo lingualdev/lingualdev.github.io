@@ -1,7 +1,14 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
+
+<h1>Latest Articles</h1>
+
+<ul class="list-none p-0 m-0">
+  {{ range first 3 site.RegularPages }}
+  <li class="m-0 p-0">
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
+  </li>
   {{ end }}
+</ul>
+
 {{ end }}

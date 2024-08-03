@@ -1,1 +1,13 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+<div
+  class="bg-zinc-100 px-8 pb-4 pt-16 text-sm text-slate-500 flex items-center justify-between"
+>
+  <p>&copy; {{ now.Year }} lingual.dev</p>
+
+  <ul class="flex gap-4">
+    {{ range first 4 .Site.Taxonomies.tags.ByCount }}
+    <li>
+      <a href="{{ .Page.RelPermalink }}" class="hover:underline">{{ .Name }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</div>

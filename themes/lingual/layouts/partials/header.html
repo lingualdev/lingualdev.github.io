@@ -1,2 +1,17 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<div class="flex items-center px-6 py-4 gap-4">
+  <a href="/" class="flex items-center gap-4 w-full">
+    <img
+      src="/lingual_logo_v1.2.svg"
+      alt="Lingual logo"
+      class="w-5 h-5 shrink-0"
+    />
+    <div class="font-semibold text-lg">{{ site.Title }}</div>
+  </a>
+  {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  <a href="https://github.com/lingualdev" class="shrink-0" target="_blank"
+    ><img src="/github_logo.svg" alt="Github logo" class="w-4 h-4"
+  /></a>
+  <a href="https://x.com/lingualdev" class="shrink-0" target="_blank"
+    ><img src="/x_logo.svg" alt="X logo" class="w-4 h-4"
+  /></a>
+</div>

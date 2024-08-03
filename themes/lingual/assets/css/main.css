@@ -3,24 +3,9 @@
 @tailwind utilities;
 
 body {
-  color: #222;
-  font-family: sans-serif;
-  line-height: 1.5;
-  margin: 1rem;
-  max-width: 768px;
+  @apply text-zinc-800 min-h-screen flex flex-col;
 }
 
-header {
-  border-bottom: 1px solid #222;
-  margin-bottom: 1rem;
-}
-
-footer {
-  border-top: 1px solid #222;
-  margin-top: 1rem;
-}
-
-a {
-  color: #00e;
-  text-decoration: none;
+main a {
+  @apply text-zinc-900 font-medium underline hover:text-sky-500;
 }
