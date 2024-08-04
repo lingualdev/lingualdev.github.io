@@ -2,6 +2,7 @@ baseURL = 'https://lingual.dev/'
 languageCode = 'en-us'
 title = 'Lingual'
 theme = "lingual"
+capitalizeListTitles = false
 
 [module]
 [[module.mounts]]
