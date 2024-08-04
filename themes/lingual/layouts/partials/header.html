@@ -1,18 +1,28 @@
 <div class="flex items-center px-6 py-4 gap-4">
   <a href="/" class="flex items-center gap-4 mr-auto">
-    <img
-      src="/lingual_logo_v1.2.svg"
-      alt="Lingual logo"
-      class="w-5 h-5 shrink-0"
-    />
+    <svg
+      class="size-5"
+      viewBox="0 0 128 128"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="33.0488" cy="14.0488" r="14.0488" fill="black" />
+      <circle cx="95.4877" cy="113.951" r="14.0488" fill="black" />
+      <circle cx="90.805" cy="64" r="18.7317" fill="#38BDF8" />
+      <circle cx="33.0488" cy="113.951" r="14.0488" fill="black" />
+      <rect x="19" y="14.0488" width="28.0976" height="99.9025" fill="black" />
+      <rect
+        x="33.0487"
+        y="99.9024"
+        width="62.439"
+        height="28.0976"
+        fill="black"
+      />
+    </svg>
+
     <div class="font-semibold text-lg">{{ site.Title }}</div>
   </a>
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-  <a href="https://github.com/lingualdev" class="shrink-0" target="_blank"
-    ><img src="/github_logo.svg" alt="Github logo" class="w-4 h-4"
-  /></a>
-  <a href="https://x.com/lingualdev" class="shrink-0" target="_blank"
-    ><img src="/x_logo.svg" alt="X logo" class="w-4 h-4"
-  /></a>
+  {{ partial "social.html" }}
 </div>
 <div class="border-b border-stone-200"></div>
