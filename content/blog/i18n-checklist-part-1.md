@@ -21,10 +21,10 @@ Almost every modern language and/or framework either offers built-in i18n suppor
 
 Research possible alternatives and ensure that the selected library supports pluralization and number/date/time formatting. For example in `react` the two most popular libraries, `react-i18next` and `react-intl`, support most i18n aspects by default.
 
-```txt
-Tip: Don't build your own i18n library, use existing, supported and tested solutions.
+{{< tip >}}
+Don't build your own i18n library, use existing, supported and tested solutions.
 Let the library take care of currencies, date/time, numbers and pluralizations.
-```
+{{< /tip >}}
 
 ## Defining a localization strategy
 
@@ -34,10 +34,10 @@ There is a current trend to also use **TypeScript** for the message id validatio
 
 On a side-note it might not be that important to use TypeScript for validating message id correctness as there are linters and checkers that can help ensuring the codebase and the locale files are in sync.
 
-```txt
-Tip: Decide if you want to apply i18n in code first or locale files first.
+{{< tip >}}
+Decide if you want to apply i18n in code first or locale files first.
 Define if the keys should be extracted from the codebase or if the locales files are updated first and then the keys applied to the codebase.
-```
+{{< /tip >}}
 
 ## Design
 
@@ -49,10 +49,10 @@ Let's take the word `skating` in English, it translates to `Schlittschuhlaufen` 
 This means we should consider to leave some room for the strings to expand depending on the selected language. The space can be calculated dynamically and expand on demand or we can leave some fixed space, that can be filled out.
 No matter what strategy we use, we should keep the varying string length in mind when designing the user interface. Taking this approach prevents strings from suddenly overlapping each other and other issues that can make your app feel broken, we want to avoid that.
 
-```txt
-Tip: Keep in mind that strings can vary in length.
+{{< tip >}}
+Keep in mind that strings can vary in length.
 Depending on the locale when designing the user interface!
-```
+{{< /tip >}}
 
 ## Pluralization
 
@@ -67,20 +67,20 @@ At first you might think that pluralization is defining a **singular** and **plu
 
 This means we can't just do a simple check for singular and plural but need to accustom to the locale. Most i18n libraries account for this and can handle pluralization correctly.
 
-```txt
-Tip: Use an internationalization library to handle pluralization!
+{{< tip >}}
+Use an internationalization library to handle pluralization!
 Avoid hardcoding any checks to show singular or plural forms.
-```
+{{< /tip >}}
 
 ## Currencies, units, time, date and number formatting
 
 There is a lot more than simple string translations that we need to consider when localzing an application. Just think about aspects like **time and date formatting**. What we want is to ensure that our **i18n efforts reflect the selected end user locale**.
 The most common approach is to avoid codifying any numbers, dates, time etc. and rather use a library to do that conversion for us by for example passing date and time in ISO format. Commonly you will find libraries for your language or framework that offer functionalities or components to do the heavyweight lifting.
 
-```txt
-Tip: Use an internationalization library to handle any units, time/dates, numbers or currencies formatting!
+{{< tip >}}
+Use an internationalization library to handle any units, time/dates, numbers or currencies formatting!
 Avoid hardcoding units, time/dates, numbers or currencies.
-```
+{{< /tip >}}
 
 ## Ensure context
 
@@ -89,10 +89,10 @@ While as a developer you might have enough context in regards to a translated st
 Adding context in the resource file can help a translator to understand where the translation is happening in the user interface. Context can be provided via using meta information or screenshots f.e.
 Depending on the message format, there are defined ways to leave meta information associated with a message id.
 
-```txt
-Tip: Add context to your translation keys in the resource files!
+{{< tip >}}
+Add context to your translation keys in the resource files!
 This ensures that context specific information is not lost during the developer/translator handover.
-```
+{{< /tip >}}
 
 ## Outro
 

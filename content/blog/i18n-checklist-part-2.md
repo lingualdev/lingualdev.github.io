@@ -28,11 +28,11 @@ Finally you can also run automated tests against specific languages in your app.
 
 You can also checkout [i18n-check](https://github.com/lingualdev/i18n-check) if you are using `react-intl` or `react-i18next` to verify your translations.
 
-```txt
-Tip: It's a good idea to research what tools are available for your programming
+{{< tip >}}
+It's a good idea to research what tools are available for your programming
 lanuage and/or framework first and then mix different approaches and see what
 yields the best results.
-```
+{{< /tip >}}
 
 ## Right-to-left languages
 
@@ -40,28 +40,28 @@ There are cases where we might need to **support right-to-left languages**, whic
 
 So right-to-left languages need to be thought about on the user interface level not only on the actual translation level. This also implies to think about the required adaptions needed in regards to the UI elements (i.e. buttons, sliders etc.) in the design phase. Additionally these design and layout adaptions should also be ensured through UI testing and other quality assurance tools.
 
-```txt
-Tip: Consider right-to-left languages, as these not only need to be translated but also might require visual adaptions to the user interface!
-```
+{{< tip >}}
+Consider right-to-left languages, as these not only need to be translated but also might require visual adaptions to the user interface!
+{{< /tip >}}
 
 ## Unicode
 
 This tip is a short one, always use **Unicode (UTF-8)** encoding to ensure that your translations are displayed correctly independent of the selected locale.
 We will be writing a more detailed blog post on Unicode soon.
 
-```txt
-Tip: Use Unicode (UTF-8) encoding!
-```
+{{< tip >}}
+Use Unicode (UTF-8) encoding!
+{{< /tip >}}
 
 ## Device sizes
 
 Depending on the range of devices we want to support, it can be a good strategy to verify how the word length and device size fit together. Do specific sentences break the user interface given a specific width or height? We need to ensure that the UI remains consistent.
 
-```txt
-Tip: Consider device sizes and how these might affect the translations.
+{{< tip >}}
+Consider device sizes and how these might affect the translations.
 Check if word length in a specific locale breaks the layout.
 Try to adapt the user interface to the different device sizes you want to support.
-```
+{{< /tip >}}
 
 ## Conditional text and grammar
 
@@ -87,12 +87,11 @@ So the above example would be refactored to a single sentence with a placholder 
 
 Now the translator can adapt the structure as needed when translating the source string into a target locale. Also, if there are placeholders in place, more information about the placeholder should be provided to the translator. This helps to gain an understanding for what the placeholder stands for and how to incorporate it into the target language.
 
-```txt
-Tip: Try to keep full sentences intact and only break them up if there is a good reason.
+{{< tip >}}
+Try to keep full sentences intact and only break them up if there is a good reason.
 Additionally use placeholders for things that don't rely on pluralization, gender or number
 and might change due to the aforementioned!
-
-```
+{{< /tip >}}
 
 ## More aspects to consider
 
