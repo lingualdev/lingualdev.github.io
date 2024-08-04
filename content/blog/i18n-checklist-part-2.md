@@ -12,7 +12,7 @@ This is the second part of the checklist to support your 18n efforts, you can al
 
 The first part focused on a wide range of topics including choosing the right library, providing context, design aspects, pluralization and more. The second part will continue covering more aspects like **right-to-left languages**, **testing and validating your localization**, **Unicode**, **device sizes** and **conditional text and grammar**.
 
-It's always a good idea to consider a wide range of angles when approaching internalionalization as it is always more than just simple string translations.
+It's always a good idea to consider a wide range of angles when approaching internationalization as it is always more than just simple string translations.
 
 ## Testing and validating your localization
 
@@ -20,11 +20,11 @@ To ensure that your application does not break when working with different langu
 
 If you don't want to test specific regions or translations, there is an option to **test different text lengths** by randomizing the text. This can help to ensure that different word lengths do not break the layout.
 
-For a more qualitative approach, you can have native speakers **manually test the application** and collect the feedback based on these tests. This a more intensive approach which also can't be automated, but can provide very valuable and deep insights when rolling out the application to a new region.
+For a more qualitative approach, you can have native speakers **manually test the application** and collect the feedback based on these tests. This is a more intensive approach which also can't be automated, but can provide very valuable and deep insights when rolling out the application to a new region.
 
-The third approach is to use **checkers and linters**. These can help to identify missing keys in specific translations files. Further more some checkers can also identify broken translations. You can run these linters/checkers locally while developing features and/or run them on the CI and get notfied when something is broken. In general these tools can be very helpful to understand the state of the translations when you are not using any translation management system.
+The third approach is to use **checkers and linters**. These can help to identify missing keys in specific translation files. Some checkers can also identify broken translations. You can run these linters/checkers locally while developing features and/or run them on the CI and get notfied when something is broken. These tools can be very helpful to understand the state of the translations when you are not using any translation management system.
 
-Finally you can also run automated tests against specific languages in your app, these tests can range from UI tests that verify specific strings exist to more advanced approaches like visual regression testing.
+Finally you can also run automated tests against specific languages in your app. These tests can range from UI tests that verify the existence of specific strings to more advanced approaches like visual regression testing.
 
 You can also checkout [i18n-check](https://github.com/lingualdev/i18n-check) if you are using `react-intl` or `react-i18next` to verify your translations.
 
@@ -75,7 +75,7 @@ Let's see an example to get a better understanding.
 "Welcome,"  name + "!"
 ```
 
-The above example would break the string into three parts and assume the structure will work for all locales
+The above example would break the string into three parts and assume the structure will work for all locales.
 
 A better way is to **use full sentences and work with placeholders**. The advantage is that the translator now has a full understanding of the sentence and can change the ordering of the words themselves. This approach brings back the flexibility needed to adapt to specific locale requirements.
 
@@ -85,7 +85,7 @@ So the above example would be refactored to a single sentence with a placholder 
 "Welcome, {name}!";
 ```
 
-Now the translator can adapt the structure as needed when translating the source string into a target locale. Also, if there are placeholders in place, more information about the placeholder should be provided the translator. This helps to gain an understanding for what the placeholder stands and how to incorporate it into the target language.
+Now the translator can adapt the structure as needed when translating the source string into a target locale. Also, if there are placeholders in place, more information about the placeholder should be provided to the translator. This helps to gain an understanding for what the placeholder stands for and how to incorporate it into the target language.
 
 ```txt
 Tip: Try to keep full sentences intact and only break them up if there is a good reason.
@@ -96,15 +96,15 @@ and might change due to the aforementioned!
 
 ## More aspects to consider
 
-There are a lot more topics to consider when planing into internationalize your app or website, for example:
+There are a lot more topics to consider when planning to internationalize your app or website. For example:
 
-- **Consider to separte text from images**: simplifies the translation process when updating the text. Otherwise if the image contains text, it will need to updated to the target locale(s).
+- **Consider to separate text from images**: simplifies the translation process when updating the text. Otherwise if the image contains text, it will need to be updated to the target locale(s).
 
 - **Selecting a translation management system**: there might be a need to use a management system to handle the translations. Depending on the situation and complexity of your setup, these tools can range from only updating the translations to handling complex workflows with multiple roles (translators, admins etc.)
 
-- **Using machine translations**: These can help to get some basic translations in place, that can be refined in a further step.
+- **Using machine translations**: these can help to get some basic translations in place, that can be refined in a further step.
 
-- **Accessibility**: The topic is bigger than i18n, but also good to consider and keep in mind when following an internationalization strategy.
+- **Accessibility**: this topic is bigger than i18n, but also good to consider and keep in mind when following an internationalization strategy.
 
 These were some further examples to highlight the complexity of the i18n topic.
 

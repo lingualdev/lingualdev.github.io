@@ -8,7 +8,7 @@ summary = "In this post we introduce i18n-check: a tool that tries to compare yo
 
 ## Introduction
 
-We released [i18n-check](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to help with internationalization efforts and support in finding **untranslated** or **invalid translation messages**.
+We released [i18n-check](https://github.com/lingualdev/i18n-check) to help with internationalization efforts and support in finding **untranslated** or **invalid translation messages**.
 
 When working with libraries like [react-intl](https://formatjs.io/docs/react-intl/) or [react-i18next](https://react.i18next.com/) you have the option to use extraction tools to keep the default locale JSON file in sync with your codebase. One advantage of choosing an extraction tool is that every i18n related change (creating, updating or removing keys) is reflected in the JSON file. This JSON file is the basis for all other languages. Removing a key in your base language should result in that key being removed in all other languages as well.
 
