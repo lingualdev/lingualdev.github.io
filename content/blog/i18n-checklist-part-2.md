@@ -3,13 +3,14 @@ title = "An almost complete checklist for your i18n efforts Part 2"
 date = 2024-07-19
 slug = "checklist-for-your-i18n-efforts-part-2"
 tags = ["i18n"]
+summary = "This is the second part of the checklist to support your 18n efforts. The first part focused on a wide range of topics including choosing the right library, providing context, design aspects, pluralization and more. This part will continue covering more aspects like right-to-left languages, testing and validating your localization, Unicode, device sizes and conditional text and grammar."
 +++
 
 ## Introduction
 
 This is the second part of the checklist to support your 18n efforts, you can also checkout [part 1 here]({{< ref "/blog/i18n-checklist-part-1.md" >}}) in case you haven't read it.
 
-The first part focused on a wide range of topics including choosing the right library, providing context, design aspects, pluralization and more. The second part will continue covering more aspects like **right-to-left languages**, **testing and validating your localization**, **unicode**, **device sizes** and **conditional text and grammar**.
+The first part focused on a wide range of topics including choosing the right library, providing context, design aspects, pluralization and more. The second part will continue covering more aspects like **right-to-left languages**, **testing and validating your localization**, **Unicode**, **device sizes** and **conditional text and grammar**.
 
 It's always a good idea to consider a wide range of angles when approaching internalionalization as it is always more than just simple string translations.
 

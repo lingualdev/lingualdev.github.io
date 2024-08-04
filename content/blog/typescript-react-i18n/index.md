@@ -3,6 +3,7 @@ title = "Making your translation keys type-safe in React"
 date = 2024-06-27
 tags = ["React", "i18n", "TypeScript"]
 slug = "making-your-translation-keys-type-safe-in-react-typescript"
+summary = "With TypeScript being the de-facto standard way to write React applications it only makes sense to expand the type-safety to our translations, specifically our translation keys. In this post we will explore how useful expanding type-checking to translation keys can be."
 +++
 
 ## Introduction

@@ -3,6 +3,7 @@ title = "Introducing i18n-check - Improving the i18n developer experience"
 description = "Introduction to i18n-check"
 date = 2024-06-18
 tags = ["i18n"]
+summary = "In this post we are introducing i18n-check: a tool that tries to compare your secondary languages to the base language files and report  missing, broken or invalid translation keys."
 +++
 
 ## Introduction
@@ -51,7 +52,7 @@ In the second example the target translation contains more date information as c
 The check should inform of potential issues in this case.
 
 As developers we don't want to actively think about the state of these translations and rather be informed when something is missing or needs updating.
-This is what `i18n-check` should help with, having **a tool that tries to compare your secondary languages to the base language files** and inform about missing or broken/invalid translation keys.
+This is what i18n-check should help with, having **a tool that tries to compare your secondary languages to the base language files** and inform about missing or broken/invalid translation keys.
 
 ## Setting up i18n-check
 
