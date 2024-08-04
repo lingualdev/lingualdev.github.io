@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply text-zinc-800 min-h-screen flex flex-col;
+  @apply text-zinc-800 min-h-screen flex flex-col bg-stone-50;
 }
 
 main a {
@@ -11,7 +11,7 @@ main a {
 }
 
 .standard-prose {
-  @apply prose lg:prose-lg mx-auto
+  @apply prose prose-stone lg:prose-lg mx-auto
   prose-img:rounded-md
 prose-code:bg-stone-200
   prose-code:px-1
@@ -21,8 +21,8 @@ prose-code:bg-stone-200
   prose-code:rounded-sm
   prose-code:text-sm
   prose-code:font-normal
-  prose-blockquote:text-slate-500
-  prose-blockquote:bg-zinc-100
+  prose-blockquote:text-stone-700
+  prose-blockquote:bg-stone-100
   [&_p]:prose-blockquote:my-1
   prose-blockquote:py-2;
 }
