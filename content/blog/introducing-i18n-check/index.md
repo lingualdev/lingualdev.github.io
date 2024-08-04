@@ -3,7 +3,7 @@ title = "Introducing i18n-check - Improving the i18n developer experience"
 description = "Introduction to i18n-check"
 date = 2024-06-18
 tags = ["i18n"]
-summary = "In this post we are introducing i18n-check: a tool that tries to compare your secondary languages to the base language files and report  missing, broken or invalid translation keys."
+summary = "In this post we introduce i18n-check: a tool that tries to compare your secondary languages to the base language files and report  missing, broken or invalid translation keys."
 +++
 
 ## Introduction
