@@ -36,7 +36,7 @@ On a side-note it might not be that important to use TypeScript for validating m
 
 {{< tip >}}
 Decide if you want to apply i18n in code first or locale files first.
-Define if the keys should be extracted from the codebase or if the locales files are updated first and then the keys applied to the codebase.
+Define if the keys should be extracted from the codebase or if the locale files are updated first and then the keys applied to the codebase.
 {{< /tip >}}
 
 ## Design
@@ -50,8 +50,8 @@ This means we should consider to leave some room for the strings to expand depen
 No matter what strategy we use, we should keep the varying string length in mind when designing the user interface. Taking this approach prevents strings from suddenly overlapping each other and other issues that can make your app feel broken, we want to avoid that.
 
 {{< tip >}}
-Keep in mind that strings can vary in length.
-Depending on the locale when designing the user interface!
+Keep in mind that strings can vary in length,
+depending on the locale, when designing the user interface!
 {{< /tip >}}
 
 ## Pluralization

@@ -30,7 +30,7 @@ You can also checkout [i18n-check](https://github.com/lingualdev/i18n-check) if 
 
 {{< tip >}}
 It's a good idea to research what tools are available for your programming
-lanuage and/or framework first and then mix different approaches and see what
+language and/or framework first and then mix different approaches and see what
 yields the best results.
 {{< /tip >}}
 
