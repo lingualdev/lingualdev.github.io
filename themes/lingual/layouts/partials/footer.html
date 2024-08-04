@@ -4,11 +4,14 @@
 >
   <p>&copy; {{ now.Year }} lingual.dev</p>
 
+  {{/*  <pre>{{ debug.Dump .Site.Taxonomies.tags.ByCount }}</pre>  */}}
   <ul class="flex gap-2 sm:gap-4">
     {{ range first 4 .Site.Taxonomies.tags.ByCount }}
-    <li class="last:hidden sm:last:block">
-      <a href="{{ .Page.RelPermalink }}" class="hover:underline">{{ .Name }}</a>
-    </li>
+      <li class="last:hidden sm:last:block">
+        <a href="{{ .Page.RelPermalink }}" class="hover:underline"
+          >{{ .Page.Name }}</a
+        >
+      </li>
     {{ end }}
   </ul>
 </div>

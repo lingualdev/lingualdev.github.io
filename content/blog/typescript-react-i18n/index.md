@@ -1,7 +1,7 @@
 +++
 title = "Making your translation keys type-safe in React"
 date = 2024-06-27
-tags = ["react", "i18n", "typescript"]
+tags = ["React", "i18n", "TypeScript"]
 slug = "making-your-translation-keys-type-safe-in-react-typescript"
 +++
 
