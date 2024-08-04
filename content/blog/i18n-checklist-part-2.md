@@ -3,7 +3,7 @@ title = "An almost complete checklist for your i18n efforts Part 2"
 date = 2024-07-19
 slug = "checklist-for-your-i18n-efforts-part-2"
 tags = ["i18n"]
-summary = "This is the second part of our i18n checklist. In this part we will cover more aspects like right-to-left languages, testing and validating your localization, Unicode, device sizes and conditional text and grammar."
+summary = "In this second part of our i18n checklist we cover more aspects like Unicode, right-to-left languages, testing and validating your localization, device sizes, and conditional text and grammar."
 +++
 
 ## Introduction

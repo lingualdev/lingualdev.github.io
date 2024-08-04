@@ -3,7 +3,7 @@ title = "An almost complete checklist for your i18n efforts Part 1"
 date = 2024-07-06
 slug = "checklist-for-your-i18n-efforts-part-1"
 tags = ["i18n"]
-summary = "Localization is more than just simply replacing a couple of strings. It requires us to think about aspects like date and time, numbers, pluralization, grammar and many more locale specific requirements. Find out more in our i18n checklist."
+summary = "Localization is more than just replacing a couple of strings. It requires us to think about aspects like date and time, numbers, pluralization, grammar and many more locale-specific requirements. Find out more in the first part of our i18n checklist."
 +++
 
 ## Introduction
