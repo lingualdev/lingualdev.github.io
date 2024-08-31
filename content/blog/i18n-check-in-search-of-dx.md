@@ -1,9 +1,8 @@
 +++
 title = "In search of the DX in i18n"
-date = 2024-08-30
+date = 2024-08-31
 slug = "in-search-of-the-DX-in-i18n"
 tags = ["i18n"]
-draft= true
 summary = "Most development areas have seen an increased focus on the developer experience, resulting in better solutions and tooling. I18n is a development area that doesn't have the same developer experience. This post tries to uncover the complexities around i18n and developer experience."
 +++
 
