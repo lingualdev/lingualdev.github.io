@@ -3,7 +3,7 @@ title = "Checking your i18n on the CI"
 date = 2024-09-13
 tags = ["i18n", "CI", "DX"]
 slug = "checking-your-i18n-on-the-ci"
-summary = "An introduction into how to run i18n validation checks on the CI to ensure your translation are in sync"
+summary = "An introduction into how to run i18n validation checks on the CI to ensure your translation are in sync."
 +++
 
 ## Introduction
