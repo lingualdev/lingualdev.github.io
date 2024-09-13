@@ -107,7 +107,7 @@ The folder structure looks like the following:
 `i18n-check` will use the `en-us.json` file as the source and compare all other files in that folder against the source.
 This is a possible outcome when running the command on the CLI:
 
-![Example CLI output](./lingual-i18n-check-example-1.png)
+![Example CLI output](./lingual-i18n-check-cli-example.png)
 
 ```bash
 i18n translations checker
