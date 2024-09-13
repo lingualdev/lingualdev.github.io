@@ -1,16 +1,18 @@
 {{ define "main" }}
+  <div class="pb-12 mb-20">
+    {{ partial "newsletter.html" }}
+  </div>
 
-<div class="standard-prose">
-  <h1>Latest Articles</h1>
-</div>
+  <div class="standard-prose">
+    <h1>Latest Articles</h1>
+  </div>
 
-<ul>
-  {{ range first 3 site.RegularPages }}
-  <li class="standard-prose">
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  </li>
-  {{ end }}
-</ul>
-
+  <ul>
+    {{ range first 3 site.RegularPages }}
+      <li class="standard-prose">
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        {{ .Summary }}
+      </li>
+    {{ end }}
+  </ul>
 {{ end }}
