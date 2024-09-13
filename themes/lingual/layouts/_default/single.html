@@ -1,11 +1,18 @@
 {{ define "main" }}
-<div class="standard-prose">
-  <h1>{{ .Title }}</h1>
+  <div class="standard-prose">
+    <h1>{{ .Title }}</h1>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }} {{
-  $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+    {{ $dateHuman := .Date | time.Format ":date_long" }}
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
 
-  {{ .Content }} {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
-</div>
+    {{ .Content }}
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  </div>
+
+  <div
+    class="standard-prose md:border border-stone-200 rounded md:px-8 py-2 lg:py-4 lg:px-12 my-4 md:my-12"
+  >
+    {{ partial "newsletter.html" }}
+  </div>
 {{ end }}
