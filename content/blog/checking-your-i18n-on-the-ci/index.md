@@ -8,9 +8,9 @@ summary = "An introduction into how to run i18n validation checks on the CI to e
 
 ## Introduction
 
-It is always a good idea to run some checks against your code base when opening up a pull-request or when merging a branch. We run different tests, builds and other **checks before or after a merge**. But how often have you ran any checks to validate if your translation files are in sync and in a valid state?
+It is always a good idea to run some checks against your codebase when opening up a pull-request or when merging a branch. We run different tests, builds and other **checks before or after a merge**. But how often have you ran any checks to validate if your translation files are in sync and in a valid state?
 
-Using continuous integration to validate **i18n specific files** is useful. We want to run some validations and checks in regards to **i18n**, which most probably will include some JSON, YAML files or another format,
+Using continuous integration to validate **i18n specific files** is useful. We want to run some validations and checks in regards to **i18n**, which most probably will include some JSON, YAML files or other formats,
 containing the locale specific translations. We will talk about the possible checks we might want to run and how they can fit into your existing workflow in this write-up.
 
 ## What we want to validate
@@ -19,7 +19,7 @@ One way to run checks against an existing branch or after a merge is to **run an
 
 The result of running the action should provide us with enough information about the **current status of the validated translations**. Typically translations can be out of sync without anyone noticing, especially if the translations are not handled by developers but by translators or managers, that are detached from the actual code.
 
-We can use the **Lingual** [`i18n-check`](https://github.com/lingualdev/i18n-check) a tool for checking your translations, which can be run the `CLI` as well as on the `CI`. `i18n-check` cab help with validating translation files, checking for missing and/or invalid/broken translations. By comparing the defined source language with all target translation files it will try to detect all **inconsistencies between source and target files**. Next we will install `i18n-check` and setup a **Github action** that will run checks every time we open a pull request.
+We can use the **Lingual** [`i18n-check`](https://github.com/lingualdev/i18n-check) a tool for checking your translations, which can be run the `CLI` as well as on the `CI`. `i18n-check` can help with validating translation files, checking for missing and/or invalid/broken translations. By comparing the defined source language with all target translation files it will try to detect all **inconsistencies between source and target files**. Next we will install `i18n-check` and setup a **Github action** that will run checks every time we open a pull request.
 
 ## Setting up the Github Action
 
