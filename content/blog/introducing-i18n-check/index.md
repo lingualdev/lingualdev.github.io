@@ -118,26 +118,32 @@ In the above scenario the `i18n-check` will compare the `fr-fr.json` and `it-it.
 
 ```bash
 i18n translations checker
-Source file(s): locales/en-en.json
+Source file(s): messageExamples/en-us.json
 
 Found missing keys!
+┌──────────────────────────────┬────────────┐
+│ file                         │ key        │
+├──────────────────────────────┼────────────┤
+│  messageExamples/de-de.json  │  richText  │
+│  messageExamples/de-de.json  │  yo        │
+│  messageExamples/de-de.json  │  nesting1  │
+│  messageExamples/de-de.json  │  nesting2  │
+│  messageExamples/de-de.json  │  nesting3  │
+│  messageExamples/de-de.json  │  key1      │
+└──────────────────────────────┴────────────┘
 
-In locales/fr-fr.json:
 
-◯ richText
-◯ yo
-◯ nesting1
-◯ nesting2
-◯ nesting3
-◯ key1
 
 Found invalid keys!
+┌──────────────────────────────┬─────────────────────┐
+│ file                         │ key                 │
+├──────────────────────────────┼─────────────────────┤
+│  messageExamples/de-de.json  │  multipleVariables  │
+└──────────────────────────────┴─────────────────────┘
 
-In locales/it-it.json:
 
-◯ multipleVariables
 
-Done in 0.01s.
+Done in 0.02s.
 ```
 
 You can also use the `-r` or `--reporter` option to see a summary of the check instead of single keys, this is especially useful if you do not want to list all the keys:
@@ -146,21 +152,27 @@ You can also use the `-r` or `--reporter` option to see a summary of the check i
 
 ```bash
 i18n translations checker
-Source file(s): locales/en-en.json
+Source file(s): messageExamples/en-us.json
 
 Found missing keys!
+┌──────────────────────────────┬───────┐
+│ file                         │ total │
+├──────────────────────────────┼───────┤
+│  messageExamples/de-de.json  │ 6     │
+└──────────────────────────────┴───────┘
 
-In locales/fr-fr.json:
 
-Found 6 missing keys.
 
 Found invalid keys!
+┌──────────────────────────────┬───────┐
+│ file                         │ total │
+├──────────────────────────────┼───────┤
+│  messageExamples/de-de.json  │ 1     │
+└──────────────────────────────┴───────┘
 
-In locales/it-it.json:
 
-Found 1 invalid key.
 
-Done in 0.01s.
+Done in 0.02s.
 ```
 
 Your files might also be organized as one folder per locale, similar to this:
