@@ -19,11 +19,11 @@ One way to run checks against an existing branch or after a merge is to **run an
 
 The result of running the action should provide us with enough information about the **current status of the validated translations**. Typically translations can be out of sync without anyone noticing, especially if the translations are not handled by developers but by translators or managers, that are detached from the actual code.
 
-We can use the **Lingual** [`i18n-check`](https://github.com/lingualdev/i18n-check) a tool for checking your translations, which can be run the `CLI` as well as on the `CI`. `i18n-check` can help with validating translation files, checking for missing and/or invalid/broken translations. By comparing the defined source language with all target translation files it will try to detect all **inconsistencies between source and target files**. Next we will install `i18n-check` and setup a **Github action** that will run checks every time we open a pull request.
+We can use [Lingual i18n-check](https://github.com/lingualdev/i18n-check), a tool for checking your translations, which can be run on the CLI as well as on the CI. i18n-check can help with validating translation files, checking for missing and/or invalid/broken translations. By comparing the defined source language with all target translation files it will try to detect all **inconsistencies between source and target files**. Next we will install i18n-check and setup a **Github action** that will run checks every time we open a pull request.
 
 ## Setting up the Github Action
 
-First thing we need to do is install `i18n-check`:
+First thing we need to do is install i18n-check:
 
 ```bash
 yarn add --dev @lingual/i18n-check
@@ -50,9 +50,9 @@ The next step is to update the `package.json` file and add a new command:
 }
 ```
 
-Once the script is updated, the `i18n-check` can be run via the command-line, i.e. via `yarn i18n-check`.
+Once the script is updated, the i18n-check can be run via the command-line, i.e. via `yarn i18n-check`.
 
-Now that we have `i18n-check` installed and the command set up, we can write a **workflow** definition using a **YAML** file:
+Now that we have i18n-check installed and the command set up, we can write a **workflow** definition using a **YAML** file:
 
 ```yaml
 name: i18n Check
@@ -83,11 +83,11 @@ jobs:
 
 We can save the file as `i18ncheck.yaml` and add it to the `.github/workflows` folder, where your other actions are defined.
 
-Interestingly there is not much else to do from a technical perspective, but it might be good to talk about the options that you can define when using `i18n-check`. Before we go into some of the details, you can consult the project's **README** where you can find general information about [setting up the workflow](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#as-github-action) as well as the[ available options](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#options).
+Interestingly there is not much else to do from a technical perspective, but it might be good to talk about the options that you can define when using i18n-check. Before we go into some of the details, you can consult the project's [README](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#readme) where you can find general information about [setting up the workflow](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#as-github-action) as well as the [available options](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#options).
 
-There are three important options that you can use depending on your use-case: `format`(`-f`, `--format`), `target`(`-t`, or `--target`) and `source`(`-s`, `--source`). By default `i18n-check` supports the `icu` message format, for example if you are using `react-intl` then you don't need to provide the format option. Additionally there is support for `i18Next`, so if you are using `react-i18next`, then provide the format via `-f i18next`.
+There are three important options that you can use depending on your use-case: `format`(`-f`, `--format`), `target`(`-t`, or `--target`) and `source`(`-s`, `--source`). By default i18n-check supports the `icu` message format, for example if you are using `react-intl` then you don't need to provide the format option. Additionally there is support for `i18Next`, so if you are using `react-i18next`, then provide the format via `-f i18next`.
 
-Depending on your folder structure, your `target` and `source` options can differ, you can check the [`examples section`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to see how you can work with different folder structures and tell `i18n-check` how to validate against these.
+Depending on your folder structure, your `target` and `source` options can differ, you can check the [examples section](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to see how you can work with different folder structures and tell i18n-check how to validate against these.
 
 For simplicity reasons, we can take a look at the example workflow from above:
 
@@ -104,33 +104,39 @@ The folder structure looks like the following:
   - it-it.json
 ```
 
-`i18n-check` will use the `en-us.json` file as the source and compare all other files in that folder against the source.
+i18n-check will use the `en-us.json` file as the source and compare all other files in that folder against the source.
 This is a possible outcome when running the command on the CLI:
 
 ![Example CLI output](./lingual-i18n-check-cli-example.png)
 
 ```bash
 i18n translations checker
-Source file(s): locales/en-en.json
+Source file(s): messageExamples/en-us.json
 
 Found missing keys!
+┌──────────────────────────────┬────────────┐
+│ file                         │ key        │
+├──────────────────────────────┼────────────┤
+│  messageExamples/de-de.json  │  richText  │
+│  messageExamples/de-de.json  │  yo        │
+│  messageExamples/de-de.json  │  nesting1  │
+│  messageExamples/de-de.json  │  nesting2  │
+│  messageExamples/de-de.json  │  nesting3  │
+│  messageExamples/de-de.json  │  key1      │
+└──────────────────────────────┴────────────┘
 
-In locales/fr-fr.json:
 
-◯ richText
-◯ yo
-◯ nesting1
-◯ nesting2
-◯ nesting3
-◯ key1
 
 Found invalid keys!
+┌──────────────────────────────┬─────────────────────┐
+│ file                         │ key                 │
+├──────────────────────────────┼─────────────────────┤
+│  messageExamples/de-de.json  │  multipleVariables  │
+└──────────────────────────────┴─────────────────────┘
 
-In locales/it-it.json:
 
-◯ multipleVariables
 
-Done in 0.01s.
+Done in 0.02s.
 ```
 
 We can get the same outcome when running it on the `CI` with the above workflow.
@@ -139,9 +145,9 @@ We can get the same outcome when running it on the `CI` with the above workflow.
 
 ## Summary
 
-The example should have helped with better understanding how the `CI` can be used to ensure that your translations are valid. Especially translations files are hard to keep in sync, as they might be in constant change due to different input sources, f.e. translation management systems. Running them before or after a merge ensures that the checks are constantly ran and can inform when files are out of sync or translations are broken or unused.
+The example should have helped with better understanding how the CI can be used to ensure that your translations are valid. Especially translations files are hard to keep in sync, as they might be in constant change due to different input sources, f.e. translation management systems. Running them before or after a merge ensures that the checks are constantly ran and can inform when files are out of sync or translations are broken or unused.
 
-If you have further questions in regards to setting up the workflow or more general questions in regards to running `i18n` validation on the `CI` or just general feedback on this post, you can find Lingual on [Twitter](https://twitter.com/lingualdev).
+If you have further questions in regards to setting up the workflow or more general questions in regards to running i18n validation on the CI or just general feedback on this post, you can find Lingual on [Twitter](https://twitter.com/lingualdev).
 
 ## Links
 
