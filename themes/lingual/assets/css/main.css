@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "Source Serif Pro";
+    font-style: bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/SourceSerifPro-Bold.otf) format("opentype");
+  }
+}
+
 body {
   @apply text-zinc-800 min-h-screen flex flex-col bg-stone-50;
 }

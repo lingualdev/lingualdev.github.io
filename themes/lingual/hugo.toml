@@ -1,6 +1,6 @@
 
 [[menus.main]]
-name = 'Archive'
+name = 'Blog'
 pageRef = '/blog'
 weight = 10
 
