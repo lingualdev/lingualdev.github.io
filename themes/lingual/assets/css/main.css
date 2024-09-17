@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "Source Serif Pro";
+    font-style: bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/SourceSerifPro-Bold.otf) format("opentype");
+  }
+}
+
 body {
   @apply text-zinc-800 min-h-screen flex flex-col bg-stone-50;
 }
@@ -32,4 +42,8 @@ prose-code:bg-stone-200
 }
 .highlight pre {
   @apply overflow-auto rounded-md p-4;
+}
+
+.emphasized {
+  @apply font-bold bg-gradient-to-r from-sky-200 to-sky-200 bg-repeat-x bg-[length:100%_6px] bg-[center_top_90%];
 }

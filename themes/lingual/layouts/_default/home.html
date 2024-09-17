@@ -1,18 +1,86 @@
 {{ define "main" }}
-  <div class="pb-20">
-    {{ partial "newsletter.html" }}
+  <div class="flex flex-col items-center pb-8">
+    <div class="bg-stone-200 rounded-t-md p-1 pb-0">
+      <div class="bg-stone-700 p-1.5 pb-0 rounded-t">
+        <img src="/screenshot_merge_1.png" />
+      </div>
+    </div>
   </div>
 
-  <div class="standard-prose">
-    <h1>Latest Articles</h1>
-  </div>
-
-  <ul>
-    {{ range first 3 site.RegularPages }}
-      <li class="standard-prose">
-        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-        {{ .Summary }}
+  <div class="prose prose-stone prose-lg md:prose-xl mx-auto prose-headings:font-serif">
+    <h1 class="text-center">
+      Translation Management:<br />
+      It doesn't have to be <span class="bg-gradient-to-r from-sky-200 to-sky-200 bg-repeat-x bg-[length:100%_16px] bg-[center_top_80%] ">such a pain in the neck</span>.
+      </span>
+    </h1>
+    <p>
+      Let’s be honest: <strong>dealing with translations is painful</strong>. Existing
+      translation management systems do little to help. Quite often they rather
+      make it worse.
+    </p>
+    <p>
+      If you ever worked with translations you certainly experienced one or more
+      of the following:
+    </p>
+    <ul>
+      <li>Sync scripts are cobbled together manually</li>
+      <li>
+        Translations in a TMS are <strong>global state</strong> and as such don’t play well with
+        development in feature branches
       </li>
-    {{ end }}
-  </ul>
+      <li>
+        Merging translation files in GIT causes <strong>spurious conflicts</strong> that are just
+        annoying to resolve
+      </li>
+      <li>
+        Branching support of existing translation management systems leave a lot
+        to be desired and/or are <strong>prohibitively expensive</strong>
+      </li>
+      <li>Coordinating translations across feature branches and/or teams takes a significant amount of effort</li>
+    </ul>
+
+    <h2>First-class Branching</h2>
+    <p>
+      Working with feature branches and managing your translations as <strong>global
+      state is an invitation for conflicts</strong>. It gets worse when working
+      with multiple teams.
+    </p>
+    <p>
+      That’s why we built branching as a core feature from day one.
+      Lingual uses the same <strong>industry-standard branching model</strong> as GIT but it
+      works on translation data-structures.
+    </p>
+    <ul>
+      <li><strong class="emphasized">No more GIT merge conflicts</strong> to resolve in your translations</li>
+      <li><strong class="emphasized">No more friction</strong> caused by translations as global state</li>
+    </ul>
+
+    <h2>State-of-the-Art CLI</h2>
+    <p>
+      We think <strong>you shouldn’t have to leave the terminal</strong> to work with your translation system.
+      Lingual comes with a state-of-the-art CLI to sync translations, branch, merge and
+      even set up your project.
+    </p>
+    <ul>
+      <li>
+        <strong class="emphasized">Stay in the terminal</strong> for project setup, translation sync, branching
+        merging, etc.
+      </li>
+      <li><strong class="emphasized">No more sync scripts</strong> held together by duct-tape and bubblegum</li>
+    </ul>
+    <img src="/screenshot_cli_push.png" />
+    <img src="/screenshot_cli_merge.png" />
+
+    <h2>Subscribe Now</h2>
+    <p>
+      Subscribe to our newsletter if you want to know more and we’ll let you know when the beta
+      becomes available.
+    </p>
+    <script
+      async
+      data-uid="757d21d6b2"
+      src="https://lingual.ck.page/757d21d6b2/index.js"
+    ></script>
+  </div>
+
 {{ end }}
