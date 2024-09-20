@@ -19,7 +19,7 @@ One way to run checks against an existing branch or after a merge is to **run an
 
 The result of running the action should provide us with enough information about the **current status of the validated translations**. Typically translations can be out of sync without anyone noticing, especially if the translations are not handled by developers but by translators or managers, that are detached from the actual code.
 
-We can use [Lingual i18n-check](https://github.com/lingualdev/i18n-check), a tool for checking your translations, which can be run on the CLI as well as on the CI. i18n-check can help with validating translation files, checking for missing and/or invalid/broken translations. By comparing the defined source language with all target translation files it will try to detect all **inconsistencies between source and target files**. Next we will install i18n-check and setup a **Github action** that will run checks every time we open a pull request.
+We can use [Lingual i18n-check](https://github.com/lingualdev/i18n-check), a tool for checking your translations, which can be run on the CLI as well as on the CI. i18n-check can help with validating translation files, checking for missing and/or invalid/broken translations. By comparing the defined source language with all target locale translation files it will try to detect all **inconsistencies between source and target locale files**. Next we will install i18n-check and setup a **Github action** that will run checks every time we open a pull request.
 
 ## Setting up the Github Action
 
@@ -78,21 +78,21 @@ jobs:
 
       - name: yarn i18n-check
         run: |
-          yarn i18n-check -t translations/messageExamples -s translations/messageExamples/en-us.json
+          yarn i18n-check --locales translations/messageExamples --source en-US
 ```
 
 We can save the file as `i18ncheck.yaml` and add it to the `.github/workflows` folder, where your other actions are defined.
 
 Interestingly there is not much else to do from a technical perspective, but it might be good to talk about the options that you can define when using i18n-check. Before we go into some of the details, you can consult the project's [README](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#readme) where you can find general information about [setting up the workflow](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#as-github-action) as well as the [available options](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#options).
 
-There are three important options that you can use depending on your use-case: `format`(`-f`, `--format`), `target`(`-t`, or `--target`) and `source`(`-s`, `--source`). By default i18n-check supports the `icu` message format, for example if you are using `react-intl` then you don't need to provide the format option. Additionally there is support for `i18Next`, so if you are using `react-i18next`, then provide the format via `-f i18next`.
+There are three important options that you can use depending on your use-case: `format`(`-f`, `--format`), `locales`(`-l`, or `--locales`) and `source`(`-s`, `--source`). By default i18n-check supports the `icu` message format, for example if you are using `react-intl` then you don't need to provide the format option. Additionally there is support for `i18Next`, so if you are using `react-i18next`, then provide the format via `-f i18next`.
 
-Depending on your folder structure, your `target` and `source` options can differ, you can check the [examples section](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to see how you can work with different folder structures and tell i18n-check how to validate against these.
+Depending on your folder structure, your `locales` and `source` options can differ, you can check the [examples section](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples) to see how you can work with different folder structures and tell i18n-check how to validate against these.
 
 For simplicity reasons, we can take a look at the example workflow from above:
 
 ```bash
-yarn i18n-check -t translations/messageExamples -s translations/messageExamples/en-us.json
+yarn i18n-check --locales translations/messageExamples --source en-US
 ```
 
 The folder structure looks like the following:
@@ -141,7 +141,7 @@ Done in 0.02s.
 
 We can get the same outcome when running it on the `CI` with the above workflow.
 
-![Example CI output](./lingual-i18n-check-github-action.png)
+![Example CI output](./lingual-i18n-check-workflow-action.png)
 
 ## Summary
 

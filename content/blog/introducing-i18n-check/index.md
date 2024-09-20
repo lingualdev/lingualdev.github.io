@@ -106,10 +106,10 @@ To keep this post short, let's take a look at two possible scenarios (there are 
   - it-it.json
 ```
 
-You can use the `-t` or `--target` option to define the directory that contains the target files and with the `-s` or `--source` option you can specify the base/reference file to compare the target files against.
+You can use the `-l` or `--locales` option to define the directory that contains the target files and with the `-s` or `--source` option you can specify the base/reference file to compare the target files against.
 
 ```bash
-yarn i18n:check -t locales -s locales/en-en.json
+yarn i18n:check --locales locales --source en-en
 ```
 
 In the above scenario the `i18n-check` will compare the `fr-fr.json` and `it-it.json` file against the `en-en.json` file and check for any missing or broken keys. Running the above command might return the following result:
@@ -189,10 +189,10 @@ Your files might also be organized as one folder per locale, similar to this:
     - three.json
 ```
 
-For this scenario you can define the `locales` folder as the `target` directory to look for target files in and pass `locales/en-US/` as the `source` option. `i18n-check` will try to collect all the files in the provided base directory and compare each one against the corresponding files in the target locales.
+For this scenario you can define the `locales` folder as the `locales` directory to look for target files in and pass `en-US` as the `source` option. `i18n-check` will try to collect all the files in the provided base directory and compare each one against the corresponding files in the target locales.
 
 ```bash
-yarn i18n:check -t locales -s locales/en-US/
+yarn i18n:check --locales locales/ --source en-US
 ```
 
 The above command would then compare the `locales/de-DE/one.json` with the `locales/en-US/one.json` and check for any missing or invalid keys.
@@ -231,7 +231,7 @@ jobs:
 
       - name: yarn i18n-check
         run: |
-          yarn i18n-check -t translations/messageExamples -s translations/messageExamples/en-us.json
+          yarn i18n-check --locales translations/messageExamples --source en-US
 ```
 
 i18n-check also offers an API you can directly use if you want to trigger these checks programmatically or if you want to build your own wrapper around the checks.
