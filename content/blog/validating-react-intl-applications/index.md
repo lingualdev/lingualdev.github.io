@@ -98,10 +98,11 @@ node_modules/.bin/i18n-check
 For this post we will assume that our translations files exist in a single folder. A basic setup could include a folder called _locales_ containing a number of translation files organized as `en-en.json`, `fr-fr.json`, `it-it.json` etc:
 
 ```
-- locales/
-  - en-en.json
+- messageExamples/
+  - en-us.json
   - fr-fr.json
   - it-it.json
+  - de-de.json
 ```
 
 For more advanced scenarios you can consult the [README](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples), which includesF more examples on how to setup the check depending on how the translation files are organised.
@@ -109,7 +110,7 @@ For more advanced scenarios you can consult the [README](https://github.com/ling
 You can use the `-l` or `--locales` option to define the directory that contains the target files and with the `-s` or `--source` option you can specify the base/reference file to compare the target files against.
 
 ```bash
-yarn i18n:check --locales locales --source en-en
+yarn i18n:check --locales messageExamples --source en-us
 ```
 
 In the above scenario the `i18n-check` will compare the `fr-fr.json` and `it-it.json` file against the `en-en.json` file and check for any missing or broken keys. Running the above command might return the following result:
@@ -178,7 +179,7 @@ Done in 0.02s.
 If we want to also check for unused keys, we can extend the command:
 
 ```bash
-yarn i18n:check --locales locales --source en-en -f -u client/ react-intl
+yarn i18n:check --locales messageExamples --source en-eus -f -u client/ react-intl
 ```
 
 We need to provide the src entry path via the [`--unused`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#--format--f) or `-u` option, i.e. `src/`, additionally we also want to tell the check what the [`--format`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#--format--f) is via `-f react-intl`.
@@ -216,9 +217,15 @@ jobs:
           yarn i18n-check --locales translations/messageExamples -s en-US -u client/ -f react-intl
 ```
 
-This is the output: ![ci output](i18n-check-workflow-example.png)
+This is the output that would be shown when running the action: ![ci output](i18n-check-workflow-example.png)
+
+## Summary
+
+Translations files are hard to keep in sync, as they are mostly in constant change. Automating the validation of `react-intl` translations files can help to idenify **unused**, **untranslated** or **invalid translation messages**
 
 Checkout i18n-check [here](https://github.com/lingualdev/i18n-check)
+
+If you have further questions in regards to setting up i18n-check or more general questions in regards to running i18n validation on the CLI or CI or just general feedback on this post, you can find Lingual on [Twitter](https://twitter.com/lingualdev).
 
 ## Links
 
