@@ -3,8 +3,7 @@ title = "Validating your react-intl applications"
 description = "How to ensure your react-intl applications are valid and up to date"
 date = 2024-11-02
 tags = ["i18n", "react", "react-intl"]
-draft = true
-summary = ""
+summary = "The blog post explains how to validate react-intl applications and ensure that all keys are in a valid state and no keys are missing or broken for all translations."
 +++
 
 ## Introduction
@@ -185,6 +184,39 @@ yarn i18n:check --locales locales --source en-en -f -u client/ react-intl
 We need to provide the src entry path via the [`--unused`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#--format--f) or `-u` option, i.e. `src/`, additionally we also want to tell the check what the [`--format`](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#--format--f) is via `-f react-intl`.
 
 There are more [options](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#options) available to configure the check even further. In most cases the aforementioned options should be enough when working with `react-intl`.
+
+## Automate the checks
+
+Automate the checks by running them on the CI. This is an example of how a Github workflow can be defined:
+
+```yml
+name: i18n-check
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  i18n-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: yarn install & build
+        run: |
+          yarn install
+          yarn build
+
+      - name: yarn i18n-check
+        run: |
+          yarn i18n-check --locales translations/messageExamples -s en-US -u client/ -f react-intl
+```
+
+This is the output: ![ci output](i18n-check-workflow-example.png)
 
 Checkout i18n-check [here](https://github.com/lingualdev/i18n-check)
 
