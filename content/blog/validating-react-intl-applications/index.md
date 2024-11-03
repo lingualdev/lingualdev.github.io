@@ -1,7 +1,7 @@
 +++
 title = "Validating your react-intl applications"
 description = "How to ensure your react-intl applications are valid and up to date"
-date = 2024-11-02
+date = 2024-11-03
 tags = ["i18n", "react", "react-intl"]
 summary = "The blog post explains how to validate react-intl applications and ensure that all keys are in a valid state and no keys are missing or broken for all translations."
 +++
@@ -9,7 +9,7 @@ summary = "The blog post explains how to validate react-intl applications and en
 ## Introduction
 
 When working with [react-intl](https://formatjs.github.io/docs/react-intl) we would like to ensure that our JSON **translations are valid and up to date**.
-What we want to avoid our translation files containing **outdated keys and translations** and **broken target translations**. These broken translations might not be caught up until they reach production, causing a suboptimal user experience or broken interfaces at worst.
+What we want is to avoid our translation files containing **outdated keys and translations** and **broken target translations**. These broken translations might not be caught until they reach production, causing a suboptimal user experience or broken interfaces at worst.
 
 More often than not, especially if we are not using a translation management system, we don't have a good overview or understanding of the current state of our translations. This is especially true if we are dealing with very large applications containing hundreds or thousands of keys and multiple languages. We want to avoid these type of scenarios.
 
