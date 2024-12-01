@@ -2,7 +2,7 @@
 title = "Getting more out of i18next in React"
 date = 2024-12-01
 slug = "getting-more-out-of-i18next-in-react"
-tags = ["i18n", "i18next", "React", "react-i18next]
+tags = ["i18n", "i18next", "React", "react-i18next"]
 summary = "A collection of  tips and tricks to get more out of i18next and react-i18next when using it with your application or website. This post covers a wide range of topics, including pluralization, React components, hooks, validation, TypeScript and much more."
 +++
 
