@@ -3,12 +3,12 @@ title = "Scaffolding your internationalization in React with automation"
 description = "Bootstrapping your internationalization by automatically transforming your code"
 date = 2024-12-26
 tags = ["i18n", "react", "react-intl", "react-i18next", "ts-morph", "automation"]
-summary = "In this introduction into the topic of automating your internalization codebase we cover how to replace hard coded strings with translation functions. We use ts-morph to parse, navigate and manipulate the AST and the examples should provide a general idea on how to get started with your own i18n transformations."
+summary = "In this introduction into the topic of automating your internationalization codebase we cover how to replace hard coded strings with translation functions. We use ts-morph to parse, navigate and manipulate the AST and the examples should provide a general idea on how to get started with your own i18n transformations."
 +++
 
 ## Introduction
 
-**Internationalization is often an afterthought** when starting to build an application, where the focus is often on a single market with a single language. At some point in time internationalizaton becomes a topic, especially when the application needs to expand into new markets or regions. That is when the existing codebase needs to be adapted to handle multiple languages, which not only includes translating strings but can also include currency, pluralization or time handling.
+**Internationalization is often an afterthought** when starting to build an application, where the focus is often on a single market with a single language. At some point in time internationalization becomes a topic, especially when the application needs to expand into new markets or regions. That is when the existing codebase needs to be adapted to handle multiple languages, which not only includes translating strings but can also include currency, pluralization or time handling.
 
 Depending on the maturity and size of the codebase, this can mean **updating and refactoring thousand of files** and needing to introduce hundreds or thousands of translations keys.
 There are a number of popular **i18n libraries** in **React**, capable of handling most internationalization requirements and offer React specific implementations like **context, hooks or higher order components**. Examples for these libraries are **[react-intl](https://formatjs.github.io/docs/react-intl/)**, **[react-i18next](https://react.i18next.com/)** or **[lingui](https://lingui.dev/)**.
@@ -290,7 +290,7 @@ As we can see, the code is very similar and could be further refactored to suppo
 
 ## Summary
 
-In this introduction into the topic of **automating your internalization codebase** we covered how to replace hard coded strings with translation functions. We used ts-morph to parse, navigate and manipulate the AST and the examples should provide a general idea on how to start with i18n transformations.
+In this introduction into the topic of **automating your internationalization codebase** we covered how to replace hard coded strings with translation functions. We used ts-morph to parse, navigate and manipulate the AST and the examples should provide a general idea on how to start with i18n transformations.
 We recommend to try out the [Github example repository](https://github.com/lingualdev/react-i18n-transformations) and see the implementation details.
 
 Based on these basic implementations, you can create a CLI command that accepts the path - which can be a single file, folder or a glob pattern - and then apply these changes for the given path.
