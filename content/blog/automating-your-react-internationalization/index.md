@@ -1,5 +1,5 @@
 +++
-title = "Scaffolding your internatlization in React with automation"
+title = "Scaffolding your internationalization in React with automation"
 description = "Bootstrapping your internationalization by automatically transforming your code"
 date = 2024-12-26
 tags = ["i18n", "react", "react-intl", "react-i18next", "ts-morph", "automation"]
