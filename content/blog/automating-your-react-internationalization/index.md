@@ -10,10 +10,10 @@ summary = "In this introduction into the topic of automating your internationali
 
 **Internationalization is often an afterthought** when starting to build an application, where the focus is often on a single market with a single language. At some point in time internationalization becomes a topic, especially when the application needs to expand into new markets or regions. That is when the existing codebase needs to be adapted to handle multiple languages, which not only includes translating strings but can also include currency, pluralization or time handling.
 
-Depending on the maturity and size of the codebase, this can mean **updating and refactoring thousand of files** and needing to introduce hundreds or thousands of translations keys.
+Depending on the maturity and size of the codebase, this can mean **updating and refactoring thousands of files** and needing to introduce hundreds or thousands of translations keys.
 There are a number of popular **i18n libraries** in **React**, capable of handling most internationalization requirements and offer React specific implementations like **context, hooks or higher order components**. Examples for these libraries are **[react-intl](https://formatjs.github.io/docs/react-intl/)**, **[react-i18next](https://react.i18next.com/)** or **[lingui](https://lingui.dev/)**.
 
-The task of **finding and replacing hard coded strings with a translation function**, i.e. a hook, can be a time consuming task, where you also might miss some translatable content or introduce other bugs like breaking the pluralization of a sentence. It's also not only about finding static strings, it's also about localizing currencies, digits or time occurrences in the code.
+The task of **finding and replacing hard coded strings with a translation function**, i.e. a hook, can be a time-consuming task, where you also might miss some translatable content or introduce other bugs like breaking the pluralization of a sentence. It's also not only about finding static strings, it's also about localizing currencies, digits or time occurrences in the code.
 
 To speed up the process of introducing i18n into an existing codebase we can try to **automate parts of the process**. In the following sections we will try to automate replacing hard coded strings with a translate function for react-i18next and react-intl codebases.
 
@@ -295,9 +295,9 @@ We recommend to try out the [Github example repository](https://github.com/lingu
 
 Based on these basic implementations, you can create a CLI command that accepts the path - which can be a single file, folder or a glob pattern - and then apply these changes for the given path.
 
-We are als planning to add transformations in [`i18n-check`](https://github.com/lingualdev/i18n-check) to help with scaffolding your internationalization efforts for your react-i18next and react-intl codebases.
+We are also planning to add transformations in [`i18n-check`](https://github.com/lingualdev/i18n-check) to help with scaffolding your internationalization efforts for your react-i18next and react-intl codebases.
 
-If you have questions or more ideas on how to extend the i18n transformations send us a message on [Bluesky](https://bsky.app/profile/lingualdev.bsky.social) or open issue directly in the [Github repository](https://github.com/lingualdev/react-i18n-transformations).
+If you have questions or more ideas on how to extend the i18n transformations send us a message on [Bluesky](https://bsky.app/profile/lingualdev.bsky.social) or open an issue directly in the [Github repository](https://github.com/lingualdev/react-i18n-transformations).
 
 ### Links
 
