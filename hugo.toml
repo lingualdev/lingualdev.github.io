@@ -8,6 +8,12 @@ capitalizeListTitles = false
 [[module.mounts]]
 source = "hugo_stats.json"
 target = "assets/watching/hugo_stats.json"
+[[module.mounts]]
+source = 'node_modules'
+target = 'assets'
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
 
 [build]
 writeStats = true

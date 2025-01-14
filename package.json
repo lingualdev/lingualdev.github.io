@@ -2,6 +2,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "autoprefixer": "^10.4.20",
+    "@glidejs/glide": "^3.7.1",
     "postcss": "^8.4.40",
     "postcss-cli": "^11.0.0",
     "prettier": "^3.3.3",
