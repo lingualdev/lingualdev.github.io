@@ -50,3 +50,19 @@ prose-code:bg-stone-200
 .emphasized {
   @apply font-bold bg-gradient-to-r from-sky-200 to-sky-200 bg-repeat-x bg-[length:100%_6px] bg-[center_top_90%];
 }
+
+.emoji-list {
+  @apply list-none !pl-0;
+}
+
+.emoji-list li {
+  @apply flex items-start gap-4 !pl-0;
+}
+
+.emoji-list li img {
+  @apply size-6 !m-0 !mt-[6px];
+}
+
+.emoji-list-sm li img {
+  @apply size-5 !mt-[8px];
+}
