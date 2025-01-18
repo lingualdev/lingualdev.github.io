@@ -64,5 +64,5 @@ prose-code:bg-stone-200
 }
 
 .emoji-list-sm li img {
-  @apply size-5 !mt-[8px];
+  @apply size-5 !mt-[7px];
 }
