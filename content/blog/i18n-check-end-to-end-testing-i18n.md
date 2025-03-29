@@ -8,9 +8,9 @@ summary = "i18n-check can be used to test your React internalization end to end 
 
 ## Introduction
 
-[i18n-check](https://github.com/lingualdev/i18n-check) was created to help with general internationalization efforts and originally focused on finding **untranslated** or **invalid** translation messages. While finding differences between locale files is useful, there is another important aspect that an end to end testing tool needs cover: the actual codebase.
+[i18n-check](https://github.com/lingualdev/i18n-check) was created to help with general internationalization efforts and originally focused on finding **untranslated** or **invalid** translation messages. While finding differences between locale files is useful, there is another important aspect that an end to end testing tool needs to cover: the actual codebase.
 
-While the locale files can be based on a specific format, i.e. `ICU` messages, the codebase is coupled to a specific programming language and/or framework. So the **general locale file checks can be applied to a broader range of languages and frameworks** (as long as they generate a valid file), but this approach doesn't work for when needing to parse and understand the codebase.
+While the locale files can be based on a specific format, i.e. `ICU` messages, the codebase is coupled to a specific programming language and/or framework. So the **general locale file checks can be applied to a broader range of languages and frameworks** (as long as they generate a valid file), but this approach doesn't work when needing to parse and understand the codebase.
 
 To summarize the above situation: `i18n-check` can be used to validate any locale files based on the `ICU` or `i18next` format, but also enables to **test your React application end to end**, as it supports code analysis of `react-intl` and `react-i18next` codebases.
 
@@ -38,7 +38,9 @@ Just by looking at the above questions, it's clear that keeping your i18n effort
 
 As developers we are dealing with the actual codebase, source and target language locale files and maybe even with external translation management systems that also update locale files at some point in time.
 
-**From a developer perspective we want tooling that we can run at a given moment in time and get a quick understanding where we might have to apply changes before running into i18n related runtime errors.**
+{{< tip >}}
+From a developer perspective we want tooling that we can run at any given moment in time and get a quick understanding where we might have to apply changes before running into i18n related runtime errors.
+{{< /tip >}}
 
 ### Using checks for end to end testing translations
 
@@ -179,6 +181,8 @@ Next, we can extend the above command to also run against the source files and c
 yarn i18n:check --locales locales --source en-en -f i18next -u src
 ```
 
+The above command would yield the following result:
+
 ```bash
 i18n translations checker
 Source: en-en
@@ -255,11 +259,11 @@ jobs:
 
 ### What's planned next
 
-We have a couple more features planned, that we want add to `i18n-check` in upcoming versions. The most interesting ones include showing error messages, to help with fixing invalid or broken messages and showing translations that exist in target languages, but are non existent in the source locale.
+We have a couple more features planned, that we want add to `i18n-check` in upcoming versions. The most interesting ones include **showing error messages**, to help with fixing invalid or broken messages and showing translations that exist in target languages, but are non existent in the source locale.
 
-Other plans include extending the unused keys/undefined keys check to other frameworks aside React, mainly focusing on the JavaScript eco-system as a first step.
+Other plans include extending the unused keys/undefined keys check to other frameworks beyond React, mainly focusing on the JavaScript eco-system as a first step.
 
-Finally we might try to add VS Code plugin, to enable run the checks directly inside your IDE and getting some visual feedback on the state of your translations.
+Finally we might try to add a VS Code plugin, to enable running the checks directly inside your IDE and getting some visual feedback on the state of your translations.
 
 You can give i18n-check a try today and see if the checks can help improve your localization efforts, especially if you are not using a third party SaaS solution for the translation part (as these often come with helpful information in regards to the state of your localization efforts).
 
