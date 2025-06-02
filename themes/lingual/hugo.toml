@@ -4,6 +4,11 @@ name = 'Blog'
 pageRef = '/blog'
 weight = 10
 
+[[menus.main]]
+name = 'i18n-check'
+pageRef = '/i18n-check'
+weight = 10
+
 # [[menus.main]]
 # name = 'Posts'
 # pageRef = '/posts'

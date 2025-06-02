@@ -13,6 +13,68 @@
     font-display: swap;
     src: url(/SourceSerifPro-Bold.otf) format("opentype");
   }
+  /* Hack */
+  @font-face {
+    font-family: "Hack";
+    font-weight: 400;
+    font-display: swap;
+    src:
+      url(/hack-regular.woff) format("woff"),
+      url(/hack-regular.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: "Hack";
+    font-weight: 700;
+    font-display: swap;
+    src:
+      url(/hack-bold.woff) format("woff"),
+      url(/hack-bold.woff2) format("woff2");
+  }
+  /* Fira Code */
+  @font-face {
+    font-family: "Fira Code";
+    src:
+      url("/woff2/FiraCode-Light.woff2") format("woff2"),
+      url("/woff/FiraCode-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    src:
+      url("/woff2/FiraCode-Regular.woff2") format("woff2"),
+      url("/woff/FiraCode-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    src:
+      url("/woff2/FiraCode-Medium.woff2") format("woff2"),
+      url("/woff/FiraCode-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    src:
+      url("/woff2/FiraCode-SemiBold.woff2") format("woff2"),
+      url("/woff/FiraCode-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    src:
+      url("/woff2/FiraCode-Bold.woff2") format("woff2"),
+      url("/woff/FiraCode-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+  }
 }
 
 body {

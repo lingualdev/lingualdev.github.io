@@ -21,7 +21,7 @@ To speed up the process of introducing i18n into an existing codebase we can try
 
 To get a better understanding, let's start with a very basic example:
 
-```ts
+```tsx
 import React from "react";
 
 export const Basic = () => {
@@ -37,7 +37,7 @@ export const Basic = () => {
 
 We can identify three possible translation keys that can be introduced in the above component. The content inside the `h1` tag would be wrapped within a `t` function (or an equivalent translation function):
 
-```ts
+```tsx
 <h1>{t("some.key.h1.title", "This is some title")}</h1>
 ```
 
@@ -54,7 +54,7 @@ So there are a couple of things that need to be done:
 
 The expected result of a transformation based on the previous example would be:
 
-```ts
+```tsx
 import React from "react";
 import { useTranslation } from "react-i18next";
 
