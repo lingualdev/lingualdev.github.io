@@ -1,7 +1,13 @@
 {{ define "main" }}
 
-    <div class="flex flex-col items-center gap-y-4">
-        <h1 class="text-center max-w-xl text-3xl"><span class="text-6xl font-bold font-mono">i18n-check</span><br>Catch issues with your translations before they hit production.</h1>
+    <div class="flex flex-col items-center gap-8 pt-8">
+        <h1 class="text-center w-full flex flex-col gap-4">
+            <span class="text-5xl lg:text-6xl font-bold font-mono">i18n-check</span>
+            <span class="text-3xl text-zinc-600">Find translation issues before they hit production.</span>
+        </h1>
+        <div class="font-mono border border-zinc-200 p-4 lg:px-8 lg:py-6 text-sm lg:text-base">
+            npm install -D @lingual/i18n-check
+        </div>
         <div class="rounded-lg bg-zinc-800 shadow-2xl text-zinc-100 p-3 w-full max-w-fit overflow-hidden">
             <div class="flex gap-2 mb-6">            
                 <div class="size-3 bg-red-500 rounded-full"></div>
@@ -35,5 +41,9 @@ Found invalid keys!
 └──────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘</span></div>
 </div>
             </div>
-        
+
+            <div class="standard-prose mt-12">
+
+                {{ .Content }}
+            </div>
 {{ end }}
