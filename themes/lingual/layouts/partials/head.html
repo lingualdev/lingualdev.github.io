@@ -9,9 +9,11 @@
 </title>
 <link rel="icon" href="/logo20_v1.2.1.svg" />
 <link rel="canonical" href="{{ .Permalink }}" />
+{{ if hugo.IsProduction }}
 <script
   defer
   src="https://cloud.umami.is/script.js"
   data-website-id="6f468da0-3830-4dd5-8f65-3c4fcb371390"
 ></script>
+{{ end }}
 {{ partialCached "head/css.html" . }}
