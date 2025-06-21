@@ -2,8 +2,8 @@
 title = "i18n-check: Validating your Next.js internationalization"
 date = 2025-06-21
 slug = "validating-your-nextjs-internationalization"
-tags = ["i18n", "i18next", "React", "next-i18next", "next=intl", "nextjs"]
-summary = "i18n-check has better support for next.js applications now, including being able to support the next-intl and next-i18next libraries. Use i18n-check to validate a next.js application end to end, including being able to identify missing keys in locales files and missing translations in the source language as well as unused keys in the source-code."
+tags = ["i18n", "i18next", "React", "next-i18next", "next-intl", "nextjs"]
+summary = "i18n-check has better support for Next.js applications now, including support for next-intl and next-i18next libraries. Use i18n-check to validate a Next.js application end to end to identify missing keys in locales files and missing translations in the source language as well as unused keys in the source code."
 +++
 
 ## Introduction
@@ -12,7 +12,7 @@ In the previous [i18n-check: End to end React i18n testing](https://lingual.dev/
 
 With the latest changes it's now possible to validate i18n end to end for a Next.js application if one of the following i18n libraries is used: [`react-intl`](https://formatjs.github.io/docs/react-intl/), [`react-i18next`](https://github.com/i18next/react-i18next), [`next-intl`](https://next-intl.dev/) or [`next-i18next`](https://github.com/i18next/next-i18next)
 
-This enables to find **untranslated** or **invalid** translation messages in locale files and additionally also find **undefined** keys, that exist in the source code but not in the locales files, as well as **unused** keys, that exist in the locale files but not in the source code.
+This enables you to find **untranslated** or **invalid** translation messages in locale files. Additionally, it identifies **undefined** key (used in the source code but missing in locale files) as well as **unused** keys (defined in the locale files but not used in the source code).
 
 ### Checking i18n in a Next.js application
 
@@ -34,7 +34,7 @@ Take a look at the following example:
 "message.greeting": "Hallo {name}!"
 ```
 
-While the default message contains tags, the message in the `de.json` file does not. These tags could have been removed during the translation process or were never added in the first place, causing a mismatch between the source and target language message.
+While the default message contains tags, the message in the `de.json` file does not. These tags might have been removed during the translation process or were never added, leading to a mismatch between the source and target language message.
 
 ```json
 // en.json
@@ -44,9 +44,9 @@ While the default message contains tags, the message in the `de.json` file does 
 "message.greeting": "Hallo {user}, heute ist {today, date, medium} und morgen ist {tomorrow, date, medium}.",
 ```
 
-The second example shows that the target translation contains more date information when compared to the source `en.json` file, which means that the source and target translations are out of sync, which can lead to weird display errors at runtime.
+The second example shows that the target translation contains more date information when compared to the source `en.json` file, indicating that the source and target translations are out of sync, which can lead to unexpected or weird display errors at runtime.
 
-Running these i18n checks should help us to identify any potential runtime issues before they affect users. We don't want to actively think about the state of our translations and rather be informed when something is missing or needs updating.
+Running these i18n checks helps us to identify any potential runtime issues before they affect users. So instead of manually keeping track of the state of our translations, we rather want to be informed when something is missing or needs updating.
 
 ## Setting up i18n-check
 
@@ -81,9 +81,9 @@ Run the `i18n:check` command directly from the CLI, i.e. `yarn i18n:check`.
 
 ## Validating locale and source files
 
-Checks can run against single files, single folders or a combination of files and folders. Depending on how these localization files are organized, there are multiple possible ways to run the checks.
+Checks can run against single files, single folders or a combination of files and folders and mainly depend on on how these localization files are organized inside an existing project.
 
-In the following is a basic example to get a better understanding (there are more advanced scenarios in the [README](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples)). A basic setup could for example include a folder called _locales_ containing a number of translation files organized as `en-en.json`, `fr-fr.json`, `it-it.json` etc:
+To get a better understanding, let's try to got through a basic example (for more advanced scenarios check the [README](https://github.com/lingualdev/i18n-check?tab=readme-ov-file#examples)). A basic setup could for example include a folder called _locales_ containing a number of translation files organized as `en-en.json`, `fr-fr.json`, `it-it.json` etc:
 
 ```
 - locales/
@@ -92,7 +92,7 @@ In the following is a basic example to get a better understanding (there are mor
   - it-it.json
 ```
 
-Using the `-l` or `--locales` option you define where the target locale files are located and with the `-s` or `--source` option you can specify the base/reference file / folder to compare the target files against. To define where the source files are located you can use the `-u` or `--unused` option and also provide the `-f` or `--format`to tell the parser if we need to check for `react-intl`, `next-intl` or the `i18-next` format.
+With the `-l` or `--locales` option you can define where the target locale files are located and with the `-s` or `--source` option you can specify the base/reference file/folder to compare the target files against. To define where the source files are located you can use the `-u` or `--unused` option and also provide the `-f` or `--format`to tell the parser if we need to check for `react-intl`, `next-intl` or the `i18-next` format.
 
 ```bash
 yarn i18n:check --locales locales --source en-en -f next-intl -u src
