@@ -9,7 +9,12 @@
     {{ template "_internal/twitter_cards.html" . }}
   </head>
   <body>
-    <header class="sticky top-0 z-50">{{ partial "header.html" . }}</header>
+    <header class="sticky top-0 z-50">
+      {{ block "header" . }}
+        {{ partial "header.html" . }}
+      {{ end }}
+    </header>
+
     <main class="flex-1 p-6 sm:px-10 lg:px-0">
       {{ block "main" . }}{{ end }}
     </main>

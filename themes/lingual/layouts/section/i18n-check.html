@@ -1,3 +1,13 @@
+{{ define "header" }}
+<div class="flex items-center px-6 py-4 gap-4 bg-stone-50">
+  {{ partial "title.html" }}
+  {{ partial "menu.html" (dict "menuID" "i18n-check" "page" .) }}
+  {{ partial "social.html" "i18n-check" }}
+</div>
+<div class="border-b border-stone-200"></div>
+
+{{ end }}
+
 {{ define "main" }}
 
     <div class="flex flex-col items-center gap-8 pt-8">

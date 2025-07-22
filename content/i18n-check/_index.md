@@ -1,5 +1,6 @@
 +++
 title = "i18n-check"
+layout = "i18n-check"
 +++
 
 ## Table of Contents
