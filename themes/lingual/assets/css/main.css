@@ -13,23 +13,6 @@
     font-display: swap;
     src: url(/SourceSerifPro-Bold.otf) format("opentype");
   }
-  /* Hack */
-  @font-face {
-    font-family: "Hack";
-    font-weight: 400;
-    font-display: swap;
-    src:
-      url(/hack-regular.woff) format("woff"),
-      url(/hack-regular.woff2) format("woff2");
-  }
-  @font-face {
-    font-family: "Hack";
-    font-weight: 700;
-    font-display: swap;
-    src:
-      url(/hack-bold.woff) format("woff"),
-      url(/hack-bold.woff2) format("woff2");
-  }
   /* Fira Code */
   @font-face {
     font-family: "Fira Code";
