@@ -1,0 +1,59 @@
+{{ define "header" }}
+<div class="flex items-center px-6 py-4 gap-4 bg-stone-50">
+  {{ partial "title.html" }}
+  {{ partial "menu.html" (dict "menuID" "i18n-check" "page" .) }}
+  {{ partial "social.html" "i18n-check" }}
+</div>
+<div class="border-b border-stone-200"></div>
+
+{{ end }}
+
+{{ define "main" }}
+
+    <div class="flex flex-col items-center gap-8 pt-8">
+        <h1 class="text-center w-full flex flex-col gap-4">
+            <span class="text-5xl lg:text-6xl font-bold font-mono">i18n-check</span>
+            <span class="text-3xl text-zinc-600">Find translation issues before they hit production.</span>
+        </h1>
+        <div class="font-mono border border-zinc-200 p-4 lg:px-8 lg:py-6 text-sm lg:text-base">
+            npm install -D @lingual/i18n-check
+        </div>
+        <div class="rounded-lg bg-zinc-800 shadow-2xl text-zinc-100 p-3 w-full max-w-fit overflow-hidden">
+            <div class="flex gap-2 mb-6">            
+                <div class="size-3 bg-red-500 rounded-full"></div>
+                <div class="size-3 bg-yellow-500 rounded-full"></div>
+                <div class="size-3 bg-green-500 rounded-full"></div>
+            </div>
+            
+            <div class="whitespace-pre font-mono text-xs overflow-auto"><span class="text-sky-400">~/code</span>$ npx @lingual/i18n-check -s en-US -l i18n-check/translations/multipleFilesFolderExample/
+i18n translations checker
+<span class="text-zinc-500">Source: en-US</span>
+                
+<span class="text-rose-600">Found missing keys!
+┌───────────────────────────────────────────────────────────────────┬─────────────────────┐
+│ file                                                              │ key                 │
+├───────────────────────────────────────────────────────────────────┼─────────────────────┤
+│ i18n-check/translations/multipleFilesFolderExample/de-DE/one.json │ message.text-format │
+│ i18n-check/translations/multipleFilesFolderExample/de-DE/two.json │ test.drive.four     │
+└───────────────────────────────────────────────────────────────────┴─────────────────────┘
+
+Found invalid keys!
+┌──────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ info │ result                                                                                                         │
+├──────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ file │ i18n-check/translations/multipleFilesFolderExample/de-DE/one.json                                              │
+│ key  │ message.select                                                                                                 │
+│ msg  │ Expected element of type "select" but received "argument", Unexpected date element, Unexpected date element... │
+├──────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ file │ i18n-check/translations/multipleFilesFolderExample/de-DE/three.json                                            │
+│ key  │ multipleVariables                                                                                              │
+│ msg  │ Expected argument to contain "user" but received "name"                                                        │
+└──────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘</span></div>
+</div>
+            </div>
+
+            <div class="standard-prose mt-12">
+
+                {{ .Content }}
+            </div>
+{{ end }}

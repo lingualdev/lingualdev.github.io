@@ -1,9 +1,5 @@
-<div class="flex items-center px-6 py-4 gap-4">
-  <a href="/" class="flex items-center gap-4 mr-auto">
-    <img class="size-5" src="/logo20_v1.2.1.svg" />
-
-    <div class="font-semibold text-lg">{{ site.Title }}</div>
-  </a>
+<div class="flex items-center px-6 py-4 gap-4 bg-stone-50">
+  {{ partial "title.html" }}
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
   {{ partial "social.html" }}
 </div>

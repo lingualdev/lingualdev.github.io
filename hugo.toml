@@ -33,3 +33,5 @@ target = "$1"
 [markup]
 [markup.highlight]
 style = "nord"
+[markup.goldmark.extensions.typographer]
+enDash = "--"

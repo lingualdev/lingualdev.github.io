@@ -1,7 +1,11 @@
-
 [[menus.main]]
 name = 'Blog'
 pageRef = '/blog'
+weight = 20
+
+[[menus.main]]
+name = 'i18n-check'
+pageRef = '/i18n-check'
 weight = 10
 
 # [[menus.main]]
@@ -13,6 +17,11 @@ weight = 10
 # name = 'Tags'
 # pageRef = '/tags'
 # weight = 30
+
+[[menus.i18n-check]]
+name = 'Blog'
+pageRef = '/blog'
+weight = 10
 
 [module]
 [module.hugoVersion]
